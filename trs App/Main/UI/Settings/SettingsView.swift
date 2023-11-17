@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @State private var showingAvatarView = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -19,6 +22,16 @@ struct SettingsView: View {
                 Text("Acknowledgements")
             }
             .navigationTitle("Settings")
+            .toolbar{
+                ToolbarItem{
+                    Button {
+                        self.showingAvatarView = true
+                        } label: {
+                        Label("Avatar", systemImage: "person.circle")
+                    }
+                }
+            }
+            NavigationLink(destination: AvatarView(), isActive: $showingAvatarView) { EmptyView() }
         }
     }
 }
