@@ -16,6 +16,8 @@
 		F36CA2852B0675100097620C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2842B0675100097620C /* SettingsView.swift */; };
 		F36CA28D2B06834D0097620C /* FilterButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA28C2B06834D0097620C /* FilterButtons.swift */; };
 		F36CA28F2B0683B30097620C /* AddCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA28E2B0683B30097620C /* AddCredentialView.swift */; };
+		F36CA2912B06F6410097620C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2902B06F6410097620C /* Color+Hex.swift */; };
+		F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2922B06F8D70097620C /* FilterManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		F36CA2842B0675100097620C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F36CA28C2B06834D0097620C /* FilterButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtons.swift; sourceTree = "<group>"; };
 		F36CA28E2B0683B30097620C /* AddCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCredentialView.swift; sourceTree = "<group>"; };
+		F36CA2902B06F6410097620C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		F36CA2922B06F8D70097620C /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		F36CA2862B0682850097620C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F36CA2902B06F6410097620C /* Color+Hex.swift */,
 				F36CA2872B06828D0097620C /* Portfolio */,
 			);
 			path = Components;
@@ -125,6 +130,7 @@
 		F36CA2882B0683140097620C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				F36CA2922B06F8D70097620C /* FilterManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -225,9 +231,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F36CA2852B0675100097620C /* SettingsView.swift in Sources */,
+				F36CA2912B06F6410097620C /* Color+Hex.swift in Sources */,
 				F36CA2812B06712B0097620C /* PortfolioView.swift in Sources */,
 				F36CA2832B0674EE0097620C /* ScheduleView.swift in Sources */,
 				F36CA28D2B06834D0097620C /* FilterButtons.swift in Sources */,
+				F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */,
 				F36CA28F2B0683B30097620C /* AddCredentialView.swift in Sources */,
 				90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */,
 				90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */,

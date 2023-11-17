@@ -20,15 +20,6 @@ struct AddCredentialView: View {
                 credential(text: "Projects", systemImage: "text.badge.checkmark")
             }
             .navigationTitle("Categories")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        dismiss.callAsFunction()
-                    } label: {
-                        Label("Close", systemImage: "xmark")
-                    }
-                }
-            }
         }
     }
     
