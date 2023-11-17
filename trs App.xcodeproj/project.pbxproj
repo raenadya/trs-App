@@ -11,6 +11,7 @@
 		90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF212AA5718F00E28133 /* ContentView.swift */; };
 		90AEEF242AA5719000E28133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AEEF232AA5719000E28133 /* Assets.xcassets */; };
 		90AEEF272AA5719000E28133 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AEEF262AA5719000E28133 /* Preview Assets.xcassets */; };
+		90B0A1E42B071D7A0001C32F /* SwiftPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 90B0A1E32B071D7A0001C32F /* SwiftPersistence */; };
 		F36CA2812B06712B0097620C /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2802B06712B0097620C /* PortfolioView.swift */; };
 		F36CA2832B0674EE0097620C /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2822B0674EE0097620C /* ScheduleView.swift */; };
 		F36CA2852B0675100097620C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2842B0675100097620C /* SettingsView.swift */; };
@@ -20,7 +21,6 @@
 		F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2922B06F8D70097620C /* FilterManager.swift */; };
 		F36CA2962B06FBBF0097620C /* CredentialInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2952B06FBBF0097620C /* CredentialInformationView.swift */; };
 		F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2972B0709160097620C /* CredentialsManager.swift */; };
-		F36CA29B2B070A180097620C /* SwiftPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = F36CA29A2B070A180097620C /* SwiftPersistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36CA29B2B070A180097620C /* SwiftPersistence in Frameworks */,
+				90B0A1E42B071D7A0001C32F /* SwiftPersistence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +193,7 @@
 			);
 			name = "trs App";
 			packageProductDependencies = (
-				F36CA29A2B070A180097620C /* SwiftPersistence */,
+				90B0A1E32B071D7A0001C32F /* SwiftPersistence */,
 			);
 			productName = "trs App";
 			productReference = 90AEEF1C2AA5718F00E28133 /* trs App.app */;
@@ -224,7 +224,7 @@
 			);
 			mainGroup = 90AEEF132AA5718F00E28133;
 			packageReferences = (
-				F36CA2992B070A180097620C /* XCRemoteSwiftPackageReference "SwiftPersistence" */,
+				90B0A1E22B071D7A0001C32F /* XCRemoteSwiftPackageReference "SwiftPersistence" */,
 			);
 			productRefGroup = 90AEEF1D2AA5718F00E28133 /* Products */;
 			projectDirPath = "";
@@ -467,20 +467,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F36CA2992B070A180097620C /* XCRemoteSwiftPackageReference "SwiftPersistence" */ = {
+		90B0A1E22B071D7A0001C32F /* XCRemoteSwiftPackageReference "SwiftPersistence" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cheesetan/SwiftPersistence";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
+				kind = exactVersion;
+				version = 1.1.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F36CA29A2B070A180097620C /* SwiftPersistence */ = {
+		90B0A1E32B071D7A0001C32F /* SwiftPersistence */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F36CA2992B070A180097620C /* XCRemoteSwiftPackageReference "SwiftPersistence" */;
+			package = 90B0A1E22B071D7A0001C32F /* XCRemoteSwiftPackageReference "SwiftPersistence" */;
 			productName = SwiftPersistence;
 		};
 /* End XCSwiftPackageProductDependency section */
