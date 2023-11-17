@@ -15,23 +15,23 @@ struct FilterButtons: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 filterButton(text: "All",
-                             isSelected: filterManager.currentSelection == FilterType.all,
+                             isSelected: filterManager.currentSelection == CategoryType.all,
                              updateTo: .all)
                 
                 filterButton(text: "Experiences",
-                             isSelected: filterManager.currentSelection == FilterType.experiences,
+                             isSelected: filterManager.currentSelection == CategoryType.experiences,
                              updateTo: .experiences)
                 
                 filterButton(text: "Competitions",
-                             isSelected: filterManager.currentSelection == FilterType.competitions,
+                             isSelected: filterManager.currentSelection == CategoryType.competitions,
                              updateTo: .competitions)
                 
                 filterButton(text: "Achievements/Honours",
-                             isSelected: filterManager.currentSelection == FilterType.achievementsAndHonours,
+                             isSelected: filterManager.currentSelection == CategoryType.achievementsAndHonours,
                              updateTo: .achievementsAndHonours)
                 
                 filterButton(text: "Projects",
-                             isSelected: filterManager.currentSelection == FilterType.projects,
+                             isSelected: filterManager.currentSelection == CategoryType.projects,
                              updateTo: .projects)
                 
                 Spacer()
@@ -43,7 +43,7 @@ struct FilterButtons: View {
     }
     
     @ViewBuilder
-    func filterButton(text: String, isSelected: Bool, updateTo: FilterType) -> some View {
+    func filterButton(text: String, isSelected: Bool, updateTo: CategoryType) -> some View {
         Button {
             filterManager.updateCurrentSelection(to: updateTo)
         } label: {

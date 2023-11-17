@@ -34,7 +34,7 @@ struct PortfolioView: View {
             }
         }
         .sheet(isPresented: $showingAddCredentialView) {
-            AddCredentialView()
+            CategoriesView()
         }
     }
 }

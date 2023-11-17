@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum FilterType {
+enum CategoryType {
     case all, experiences, competitions, achievementsAndHonours, projects
 }
 
 class FilterManager: ObservableObject {
     static let shared: FilterManager = .init()
     
-    @Published var currentSelection: FilterType = .all
+    @Published var currentSelection: CategoryType = .all
     
-    func updateCurrentSelection(to newValue: FilterType) {
+    func updateCurrentSelection(to newValue: CategoryType) {
         currentSelection = newValue
     }
 }

@@ -14,19 +14,19 @@ struct CategoriesView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 15) {
-                credential(text: "Experiences", systemImage: "shared.with.you")
-                credential(text: "Competitions", systemImage: "figure.open.water.swim")
-                credential(text: "Achievements/Honours", systemImage: "trophy.fill")
-                credential(text: "Projects", systemImage: "text.badge.checkmark")
+                credential(text: "Experiences", systemImage: "shared.with.you", forType: .experiences)
+                credential(text: "Competitions", systemImage: "figure.open.water.swim", forType: .competitions)
+                credential(text: "Achievements/Honours", systemImage: "trophy.fill", forType: .achievementsAndHonours)
+                credential(text: "Projects", systemImage: "text.badge.checkmark", forType: .projects)
             }
             .navigationTitle("Categories")
         }
     }
     
     @ViewBuilder
-    func credential(text: String, systemImage: String) -> some View {
+    func credential(text: String, systemImage: String, forType type: CategoryType) -> some View {
         NavigationLink {
-            
+            CredentialInformationView(navigationTitle: text, forType: type)
         } label: {
             HStack(spacing: 5) {
                 Label(text, systemImage: systemImage)
