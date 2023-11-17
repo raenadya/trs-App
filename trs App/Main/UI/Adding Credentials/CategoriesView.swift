@@ -1,5 +1,5 @@
 //
-//  AddCredentialView.swift
+//  CategoriesView.swift
 //  trs App
 //
 //  Created by Tristan Chay on 17/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddCredentialView: View {
+struct CategoriesView: View {
     
     @Environment(\.dismiss) var dismiss
     
@@ -41,6 +41,8 @@ struct AddCredentialView: View {
     }
 }
 
-#Preview {
-    AddCredentialView()
+struct CategoriesView_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoriesView()
+    }
 }
