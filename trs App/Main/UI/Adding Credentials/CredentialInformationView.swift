@@ -7,26 +7,11 @@
 
 import SwiftUI
 
-enum CompetitionTagType: String, CaseIterable {
-    case stem = "STEM"
-    case humanities = "Humanities"
-    case linguistics = "Linguistics"
-    case arts = "Arts"
-    case sports = "Sports"
-    case others = "Others"
-}
-
-enum ExperienceTagType: String, CaseIterable {
-    case communityService = "Community Service"
-    case leadership = "Leadership"
-    case others = "Others"
-}
-
 struct CredentialInformationView: View {
     
     @State var navigationTitle: String
     @State var forType: CategoryType
-  
+    
     @State var title = ""
     @State var achievement = ""
     @State var organiser = ""
@@ -38,11 +23,45 @@ struct CredentialInformationView: View {
     @State var additionalInfo = ""
     @State var documents = ""
     
-    @State var competitiontagSelection: CompetitionTagType = .stem
-    @State var experiencetagSelection: ExperienceTagType = .communityService
-    
+    @State var competitionTagSelection: CompetitionTagType = .stem
+    @State var experienceTagSelection: ExperienceTagType = .communityService
     
     @State var openFileDirectory = false
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @ObservedObject var credentialsManager: CredentialsManager = .shared
+    
+    var disabled: Bool {
+        switch forType {
+        case .all:
+            return true
+        case .experiences:
+            if !title.isEmpty && !organiser.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        case .competitions:
+            if !title.isEmpty && !organiser.isEmpty && !achievement.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        case .achievementsAndHonours:
+            if !title.isEmpty && !organiser.isEmpty && !achievement.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        case .projects:
+            if !title.isEmpty && !organiser.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
     
     var body: some View {
         List {
@@ -51,6 +70,23 @@ struct CredentialInformationView: View {
             secondaryInfoSection
             documentsSection
             tagSection
+        }
+        .navigationTitle(navigationTitle)
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            let calendar = Calendar(identifier: .gregorian)
+            startDate = calendar.startOfDay(for: Date())
+            endDate = calendar.startOfDay(for: Date())
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    addCredential()
+                } label: {
+                    Text("Add")
+                }
+                .disabled(disabled)
+            }
         }
         .fileImporter(isPresented: $openFileDirectory,
                       allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf],
@@ -63,13 +99,6 @@ struct CredentialInformationView: View {
             } catch {
                 print("error reading file \(error.localizedDescription)")
             }
-        }
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            let calendar = Calendar(identifier: .gregorian)
-            startDate = calendar.startOfDay(for: Date())
-            endDate = calendar.startOfDay(for: Date())
         }
     }
     
@@ -91,8 +120,8 @@ struct CredentialInformationView: View {
     
     var durationSection: some View {
         Section {
-            DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-            DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+            DatePicker("Start Date", selection: $startDate, in: ...endDate, displayedComponents: .date)
+            DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: .date)
         }
     }
     
@@ -139,14 +168,14 @@ struct CredentialInformationView: View {
     var tagSection: some View {
         Section {
             if forType == .experiences {
-                Picker("Tag", selection: $experiencetagSelection) {
+                Picker("Tag", selection: $experienceTagSelection) {
                     ForEach(ExperienceTagType.allCases, id: \.rawValue) { tag in
                         Text(tag.rawValue)
                             .tag(tag)
                     }
                 }
             } else if forType == .competitions {
-                Picker("Tag", selection: $competitiontagSelection) {
+                Picker("Tag", selection: $competitionTagSelection) {
                     ForEach(CompetitionTagType.allCases, id: \.rawValue) { tag in
                         Text(tag.rawValue)
                             .tag(tag)
@@ -154,6 +183,48 @@ struct CredentialInformationView: View {
                 }
             }
         }
+    }
+    
+    func addCredential() {
+        switch forType {
+        case .all:
+            break
+        case .experiences:
+            credentialsManager.addToExperiences(withValue: Experience(title: title,
+                                                                      organiserName: organiser,
+                                                                      startDate: startDate,
+                                                                      endDate: endDate,
+                                                                      description: description,
+                                                                      additionalInformation: additionalInfo,
+                                                                      tag: experienceTagSelection)
+            )
+        case .competitions:
+            credentialsManager.addToCompetitions(withValue: Competition(title: title,
+                                                                        organiserName: organiser,
+                                                                        achievementLevel: achievement,
+                                                                        startDate: startDate,
+                                                                        endDate: endDate,
+                                                                        description: description,
+                                                                        tag: competitionTagSelection)
+            )
+        case .achievementsAndHonours:
+            credentialsManager.addToAchievementAndHonours(withValue: AchievementAndHonour(title: title,
+                                                                                          organiserName: organiser,
+                                                                                          achievementLevel: achievement,
+                                                                                          startDate: startDate,
+                                                                                          endDate: endDate,
+                                                                                          description: description)
+            )
+        case .projects:
+            credentialsManager.addToProjects(withValue: Project(title: title,
+                                                                organiserName: organiser,
+                                                                startDate: startDate,
+                                                                endDate: endDate,
+                                                                description: description)
+            )
+        }
+        dismiss.callAsFunction()
+        dismiss.callAsFunction()
     }
 }
 

@@ -5,7 +5,7 @@
 //  Created by Tristan Chay on 17/11/23.
 //
 
-import Foundation
+import SwiftUI
 
 enum CategoryType {
     case all, experiences, competitions, achievementsAndHonours, projects
@@ -17,6 +17,8 @@ class FilterManager: ObservableObject {
     @Published var currentSelection: CategoryType = .all
     
     func updateCurrentSelection(to newValue: CategoryType) {
-        currentSelection = newValue
+        withAnimation {
+            currentSelection = newValue
+        }
     }
 }

@@ -11,30 +11,68 @@ struct PortfolioView: View {
     
     @State var showingAddCredentialView = false
     
+    @ObservedObject var filterManager: FilterManager = .shared
+    @ObservedObject var credentialsManager: CredentialsManager = .shared
+    
     var body: some View {
         NavigationStack {
-            List {
-                Text("PortfolioView")
-            }
-            .safeAreaInset(edge: .top) {
-                FilterButtons()
-            }
-            .navigationTitle("My Portfolio")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
+            list
+                .safeAreaInset(edge: .top) {
+                    FilterButtons()
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAddCredentialView.toggle()
-                    } label: {
-                        Label("Add credential", systemImage: "plus")
+                .navigationTitle("My Portfolio")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            showingAddCredentialView.toggle()
+                        } label: {
+                            Label("Add credential", systemImage: "plus")
+                        }
                     }
                 }
-            }
         }
         .sheet(isPresented: $showingAddCredentialView) {
             CategoriesView()
+        }
+    }
+    
+    var list: some View {
+        List {
+            switch filterManager.currentSelection {
+            case .all:
+                EmptyView()
+            case .experiences:
+                ForEach(credentialsManager.experiences, id: \.id) { experience in
+                    Text(experience.title)
+                }
+                .onDelete { indexOffset in
+                    credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
+                }
+            case .competitions:
+                ForEach(credentialsManager.competitions, id: \.id) { competition in
+                    Text(competition.title)
+                }
+                .onDelete { indexOffset in
+                    credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
+                }
+            case .achievementsAndHonours:
+                ForEach(credentialsManager.achievementAndHonours, id: \.id) { achievementAndHonour in
+                    Text(achievementAndHonour.title)
+                }
+                .onDelete { indexOffset in
+                    credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
+                }
+            case .projects:
+                ForEach(credentialsManager.projects, id: \.id) { project in
+                    Text(project.title)
+                }
+                .onDelete { indexOffset in
+                    credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
+                }
+            }
         }
     }
 }

@@ -19,6 +19,8 @@
 		F36CA2912B06F6410097620C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2902B06F6410097620C /* Color+Hex.swift */; };
 		F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2922B06F8D70097620C /* FilterManager.swift */; };
 		F36CA2962B06FBBF0097620C /* CredentialInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2952B06FBBF0097620C /* CredentialInformationView.swift */; };
+		F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2972B0709160097620C /* CredentialsManager.swift */; };
+		F36CA29B2B070A180097620C /* SwiftPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = F36CA29A2B070A180097620C /* SwiftPersistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,7 @@
 		F36CA2902B06F6410097620C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		F36CA2922B06F8D70097620C /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
 		F36CA2952B06FBBF0097620C /* CredentialInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialInformationView.swift; sourceTree = "<group>"; };
+		F36CA2972B0709160097620C /* CredentialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36CA29B2B070A180097620C /* SwiftPersistence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				F36CA2922B06F8D70097620C /* FilterManager.swift */,
+				F36CA2972B0709160097620C /* CredentialsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -187,6 +192,9 @@
 			dependencies = (
 			);
 			name = "trs App";
+			packageProductDependencies = (
+				F36CA29A2B070A180097620C /* SwiftPersistence */,
+			);
 			productName = "trs App";
 			productReference = 90AEEF1C2AA5718F00E28133 /* trs App.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +223,9 @@
 				Base,
 			);
 			mainGroup = 90AEEF132AA5718F00E28133;
+			packageReferences = (
+				F36CA2992B070A180097620C /* XCRemoteSwiftPackageReference "SwiftPersistence" */,
+			);
 			productRefGroup = 90AEEF1D2AA5718F00E28133 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F36CA2852B0675100097620C /* SettingsView.swift in Sources */,
+				F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */,
 				F36CA2912B06F6410097620C /* Color+Hex.swift in Sources */,
 				F36CA2812B06712B0097620C /* PortfolioView.swift in Sources */,
 				F36CA2832B0674EE0097620C /* ScheduleView.swift in Sources */,
@@ -451,6 +463,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F36CA2992B070A180097620C /* XCRemoteSwiftPackageReference "SwiftPersistence" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cheesetan/SwiftPersistence";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F36CA29A2B070A180097620C /* SwiftPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F36CA2992B070A180097620C /* XCRemoteSwiftPackageReference "SwiftPersistence" */;
+			productName = SwiftPersistence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 90AEEF142AA5718F00E28133 /* Project object */;
 }
