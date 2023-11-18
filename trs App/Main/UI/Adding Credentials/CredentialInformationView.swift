@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CredentialInformationView: View {
     
-    @State var navigationTitle: String
-    @State var forType: CategoryType
+    @Binding var showingAddCredentialView: Bool
+    @Binding var showingCredentialInformation: Bool
+    @Binding var navigationTitle: String
+    @Binding var forType: CategoryType
     
     @State var title = ""
     @State var achievement = ""
@@ -228,8 +230,8 @@ struct CredentialInformationView: View {
                                                                 description: description)
             )
         }
-        dismiss.callAsFunction()
-        dismiss.callAsFunction()
+        showingCredentialInformation = false
+        showingAddCredentialView = false
     }
 }
 
