@@ -1,5 +1,5 @@
 //
-//  CredentialInformationView.swift
+//  NewCredentialsView.swift
 //  trs App
 //
 //  Created by Tristan Chay on 17/11/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CredentialInformationView: View {
+struct NewCredentialsView: View {
     
     @Binding var showingAddCredentialView: Bool
     @Binding var showingCredentialInformation: Bool
@@ -239,8 +239,8 @@ struct CredentialInformationView: View {
     }
 }
 
-//struct CredentialInformationView_Previews: PreviewProvider {
+//struct NewCredentialsView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        CredentialInformationView()
+//        NewCredentialsView()
 //    }
 //}

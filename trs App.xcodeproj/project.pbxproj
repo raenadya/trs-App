@@ -22,7 +22,7 @@
 		F36CA28F2B0683B30097620C /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA28E2B0683B30097620C /* CategoriesView.swift */; };
 		F36CA2912B06F6410097620C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2902B06F6410097620C /* Color+Hex.swift */; };
 		F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2922B06F8D70097620C /* FilterManager.swift */; };
-		F36CA2962B06FBBF0097620C /* CredentialInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2952B06FBBF0097620C /* CredentialInformationView.swift */; };
+		F36CA2962B06FBBF0097620C /* NewCredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */; };
 		F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2972B0709160097620C /* CredentialsManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		F36CA28E2B0683B30097620C /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		F36CA2902B06F6410097620C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		F36CA2922B06F8D70097620C /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
-		F36CA2952B06FBBF0097620C /* CredentialInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialInformationView.swift; sourceTree = "<group>"; };
+		F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCredentialsView.swift; sourceTree = "<group>"; };
 		F36CA2972B0709160097620C /* CredentialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				F36CA28E2B0683B30097620C /* CategoriesView.swift */,
-				F36CA2952B06FBBF0097620C /* CredentialInformationView.swift */,
+				F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */,
 			);
 			path = "Adding Credentials";
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				F36CA2812B06712B0097620C /* PortfolioView.swift in Sources */,
 				90B0A1E62B0845BC0001C32F /* TipsView.swift in Sources */,
 				F36CA2832B0674EE0097620C /* ScheduleView.swift in Sources */,
-				F36CA2962B06FBBF0097620C /* CredentialInformationView.swift in Sources */,
+				F36CA2962B06FBBF0097620C /* NewCredentialsView.swift in Sources */,
 				1D3021B52B0865D7006F8939 /* AddSheetView.swift in Sources */,
 				F36CA28D2B06834D0097620C /* FilterButtons.swift in Sources */,
 				F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */,

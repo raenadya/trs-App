@@ -27,7 +27,7 @@ struct CategoriesView: View {
             }
             .navigationTitle("Categories")
             .navigationDestination(isPresented: $showingCredentialInformation) {
-                CredentialInformationView(showingAddCredentialView: $showingAddCredentialView,
+                NewCredentialsView(showingAddCredentialView: $showingAddCredentialView,
                                           showingCredentialInformation: $showingCredentialInformation,
                                           navigationTitle: $titleToBePassed,
                                           forType: $typeToBePassed)
