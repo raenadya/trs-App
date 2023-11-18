@@ -10,6 +10,7 @@ import SwiftUI
 struct PortfolioView: View {
     
     @State var showingAddCredentialView = false
+    @State var showingTipsView = false
     
     @ObservedObject var filterManager: FilterManager = .shared
     @ObservedObject var credentialsManager: CredentialsManager = .shared
@@ -27,6 +28,13 @@ struct PortfolioView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
+                            showingTipsView.toggle()
+                        } label: {
+                            Label("Open Tips", systemImage: "lightbulb")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
                             showingAddCredentialView.toggle()
                         } label: {
                             Label("Add credential", systemImage: "plus")
@@ -36,6 +44,9 @@ struct PortfolioView: View {
         }
         .sheet(isPresented: $showingAddCredentialView) {
             CategoriesView()
+        }
+        .sheet(isPresented: $showingTipsView) {
+            TipsView(currentSelection: filterManager.currentSelection)
         }
     }
     
