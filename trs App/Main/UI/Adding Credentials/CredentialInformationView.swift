@@ -107,7 +107,11 @@ struct CredentialInformationView: View {
     
     var infoSection: some View {
         Section {
-            TextField("\(String(navigationTitle.dropLast())) Name", text: $title)
+            if navigationTitle == "Achievements/Honours" {
+                TextField("Achievement/Honour Name", text: $title)
+            } else {
+                TextField("\(String(navigationTitle.dropLast())) Name", text: $title)
+            }
             TextField("Organiser Name", text: $organiser)
             if forType == .achievementsAndHonours || forType == .competitions {
                 TextField("Achievement Level", text: $achievement)

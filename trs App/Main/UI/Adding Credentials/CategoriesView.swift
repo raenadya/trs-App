@@ -20,10 +20,10 @@ struct CategoriesView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 15) {
-                credential(text: "Experiences", systemImage: "shared.with.you", forType: .experiences)
-                credential(text: "Competitions", systemImage: "figure.open.water.swim", forType: .competitions)
-                credential(text: "Achievements/Honours", systemImage: "trophy.fill", forType: .achievementsAndHonours)
-                credential(text: "Projects", systemImage: "text.badge.checkmark", forType: .projects)
+                credential(systemImage: "shared.with.you", forType: .experiences)
+                credential(systemImage: "figure.open.water.swim", forType: .competitions)
+                credential(systemImage: "trophy.fill", forType: .achievementsAndHonours)
+                credential(systemImage: "text.badge.checkmark", forType: .projects)
             }
             .navigationTitle("Categories")
             .navigationDestination(isPresented: $showingCredentialInformation) {
@@ -36,14 +36,14 @@ struct CategoriesView: View {
     }
     
     @ViewBuilder
-    func credential(text: String, systemImage: String, forType type: CategoryType) -> some View {
+    func credential(systemImage: String, forType type: CategoryType) -> some View {
         Button {
             typeToBePassed = type
-            titleToBePassed = text
+            titleToBePassed = type.rawValue
             showingCredentialInformation.toggle()
         } label: {
             HStack(spacing: 5) {
-                Label(text, systemImage: systemImage)
+                Label(type.rawValue, systemImage: systemImage)
                     .font(.title3)
             }
             .padding()

@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-enum CategoryType {
-    case all, experiences, competitions, achievementsAndHonours, projects
+enum CategoryType: String {
+    case all = "All"
+    case experiences = "Experiences"
+    case competitions = "Competitions"
+    case achievementsAndHonours = "Achievements/Honours"
+    case projects = "Projects"
 }
 
 class FilterManager: ObservableObject {
