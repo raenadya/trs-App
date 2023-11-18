@@ -124,6 +124,7 @@
 				90B0A1E72B0846120001C32F /* Showing Tips */,
 				F36CA2942B06FB430097620C /* Adding Credentials */,
 				F36CA2892B0683260097620C /* Portfolio */,
+				F36CA2942B06FB430097620C /* Adding Credentials */,
 				F36CA28A2B06832F0097620C /* Schedule */,
 				F36CA28B2B0683340097620C /* Settings */,
 			);
