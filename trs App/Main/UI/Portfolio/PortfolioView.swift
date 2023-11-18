@@ -47,6 +47,7 @@ struct PortfolioView: View {
         }
         .sheet(isPresented: $showingTipsView) {
             TipsView(currentSelection: filterManager.currentSelection)
+                .presentationDetents([.medium])
         }
     }
     
