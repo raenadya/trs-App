@@ -91,12 +91,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		90B0A1E72B0846120001C32F /* Showing Tips */ = {
+		90B0A1E72B0846120001C32F /* Tips */ = {
 			isa = PBXGroup;
 			children = (
 				90B0A1E52B0845BC0001C32F /* TipsView.swift */,
 			);
-			path = "Showing Tips";
+			path = Tips;
 			sourceTree = "<group>";
 		};
 		F36CA27D2B0670C50097620C /* Application */ = {
@@ -121,8 +121,7 @@
 		F36CA27F2B0670E20097620C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				90B0A1E72B0846120001C32F /* Showing Tips */,
-				F36CA2942B06FB430097620C /* Adding Credentials */,
+				90B0A1E72B0846120001C32F /* Tips */,
 				F36CA2892B0683260097620C /* Portfolio */,
 				F36CA2942B06FB430097620C /* Adding Credentials */,
 				F36CA28A2B06832F0097620C /* Schedule */,
