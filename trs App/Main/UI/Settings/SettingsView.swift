@@ -22,16 +22,15 @@ struct SettingsView: View {
                 Text("Acknowledgements")
             }
             .navigationTitle("Settings")
-            .toolbar{
-                ToolbarItem{
-                    Button {
-                        self.showingAvatarView = true
-                        } label: {
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        AvatarView()
+                    } label: {
                         Label("Avatar", systemImage: "person.circle")
                     }
                 }
             }
-            NavigationLink(destination: AvatarView(), isActive: $showingAvatarView) { EmptyView() }
         }
     }
 }
