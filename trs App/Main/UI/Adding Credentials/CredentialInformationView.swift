@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CredentialInformationView: View {
     
-    @State var navigationTitle: String
-    @State var forType: CategoryType
+    @Binding var showingAddCredentialView: Bool
+    @Binding var showingCredentialInformation: Bool
+    @Binding var navigationTitle: String
+    @Binding var forType: CategoryType
     
     @State var title = ""
     @State var achievement = ""
@@ -89,6 +91,7 @@ struct CredentialInformationView: View {
             }
         }
         .fileImporter(isPresented: $openFileDirectory,
+                      
                       allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf],
                       allowsMultipleSelection: true) { files in
             do {
@@ -190,7 +193,8 @@ struct CredentialInformationView: View {
         case .all:
             break
         case .experiences:
-            credentialsManager.addToExperiences(withValue: Experience(title: title,
+            credentialsManager.addToExperiences(withValue: Experience(dateAdded: Date(),
+                                                                      title: title,
                                                                       organiserName: organiser,
                                                                       startDate: startDate,
                                                                       endDate: endDate,
@@ -199,7 +203,8 @@ struct CredentialInformationView: View {
                                                                       tag: experienceTagSelection)
             )
         case .competitions:
-            credentialsManager.addToCompetitions(withValue: Competition(title: title,
+            credentialsManager.addToCompetitions(withValue: Competition(dateAdded: Date(),
+                                                                        title: title,
                                                                         organiserName: organiser,
                                                                         achievementLevel: achievement,
                                                                         startDate: startDate,
@@ -208,7 +213,8 @@ struct CredentialInformationView: View {
                                                                         tag: competitionTagSelection)
             )
         case .achievementsAndHonours:
-            credentialsManager.addToAchievementAndHonours(withValue: AchievementAndHonour(title: title,
+            credentialsManager.addToAchievementAndHonours(withValue: AchievementAndHonour(dateAdded: Date(),
+                                                                                          title: title,
                                                                                           organiserName: organiser,
                                                                                           achievementLevel: achievement,
                                                                                           startDate: startDate,
@@ -216,15 +222,16 @@ struct CredentialInformationView: View {
                                                                                           description: description)
             )
         case .projects:
-            credentialsManager.addToProjects(withValue: Project(title: title,
+            credentialsManager.addToProjects(withValue: Project(dateAdded: Date(),
+                                                                title: title,
                                                                 organiserName: organiser,
                                                                 startDate: startDate,
                                                                 endDate: endDate,
                                                                 description: description)
             )
         }
-        dismiss.callAsFunction()
-        dismiss.callAsFunction()
+        showingCredentialInformation = false
+        showingAddCredentialView = false
     }
 }
 
