@@ -60,39 +60,71 @@ struct PortfolioView: View {
                 ForEach(credentials, id: \.id) { credential in
                     switch credential {
                     case .achievementAndHonour(let achievementAndHonour):
-                        listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                        NavigationLink {
+                            CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
+                        } label: {
+                            listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                        }
                     case .competition(let competition):
-                        listRowPreview(title: competition.title, description: competition.description)
+                        NavigationLink {
+                            CredentialInformationView(credential: Credential.competition(competition))
+                        } label: {
+                            listRowPreview(title: competition.title, description: competition.description)
+                        }
                     case .experience(let experience):
-                        listRowPreview(title: experience.title, description: experience.description)
+                        NavigationLink {
+                            CredentialInformationView(credential: Credential.experience(experience))
+                        } label: {
+                            listRowPreview(title: experience.title, description: experience.description)
+                        }
                     case .project(let project):
-                        listRowPreview(title: project.title, description: project.description)
+                        NavigationLink {
+                            CredentialInformationView(credential: Credential.project(project))
+                        } label: {
+                            listRowPreview(title: project.title, description: project.description)
+                        }
                     }
                 }
             case .experiences:
                 ForEach(credentialsManager.experiences, id: \.id) { experience in
-                    listRowPreview(title: experience.title, description: experience.description)
+                    NavigationLink {
+                        CredentialInformationView(credential: Credential.experience(experience))
+                    } label: {
+                        listRowPreview(title: experience.title, description: experience.description)
+                    }
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
                 }
             case .competitions:
                 ForEach(credentialsManager.competitions, id: \.id) { competition in
-                    listRowPreview(title: competition.title, description: competition.description)
+                    NavigationLink {
+                        CredentialInformationView(credential: Credential.competition(competition))
+                    } label: {
+                        listRowPreview(title: competition.title, description: competition.description)
+                    }
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
                 }
             case .achievementsAndHonours:
                 ForEach(credentialsManager.achievementAndHonours, id: \.id) { achievementAndHonour in
-                    listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                    NavigationLink {
+                        CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
+                    } label: {
+                        listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                    }
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
                 }
             case .projects:
                 ForEach(credentialsManager.projects, id: \.id) { project in
-                    listRowPreview(title: project.title, description: project.description)
+                    NavigationLink {
+                        CredentialInformationView(credential: Credential.project(project))
+                    } label: {
+                        listRowPreview(title: project.title, description: project.description)
+                    }
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)

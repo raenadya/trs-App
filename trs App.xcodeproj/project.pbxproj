@@ -15,6 +15,7 @@
 		90AEEF272AA5719000E28133 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AEEF262AA5719000E28133 /* Preview Assets.xcassets */; };
 		90B0A1E42B071D7A0001C32F /* SwiftPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 90B0A1E32B071D7A0001C32F /* SwiftPersistence */; };
 		90B0A1E62B0845BC0001C32F /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0A1E52B0845BC0001C32F /* TipsView.swift */; };
+		F33E68BC2B086E7F00DED94F /* CredentialInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33E68BB2B086E7F00DED94F /* CredentialInformationView.swift */; };
 		F36CA2812B06712B0097620C /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2802B06712B0097620C /* PortfolioView.swift */; };
 		F36CA2832B0674EE0097620C /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2822B0674EE0097620C /* ScheduleView.swift */; };
 		F36CA2852B0675100097620C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2842B0675100097620C /* SettingsView.swift */; };
@@ -35,6 +36,7 @@
 		90AEEF232AA5719000E28133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90AEEF262AA5719000E28133 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		90B0A1E52B0845BC0001C32F /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
+		F33E68BB2B086E7F00DED94F /* CredentialInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialInformationView.swift; sourceTree = "<group>"; };
 		F36CA2802B06712B0097620C /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		F36CA2822B0674EE0097620C /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		F36CA2842B0675100097620C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				F36CA2802B06712B0097620C /* PortfolioView.swift */,
+				F33E68BB2B086E7F00DED94F /* CredentialInformationView.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				1D3021B52B0865D7006F8939 /* AddSheetView.swift in Sources */,
 				F36CA28D2B06834D0097620C /* FilterButtons.swift in Sources */,
 				F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */,
+				F33E68BC2B086E7F00DED94F /* CredentialInformationView.swift in Sources */,
 				F36CA28F2B0683B30097620C /* CategoriesView.swift in Sources */,
 				90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */,
 				90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */,
