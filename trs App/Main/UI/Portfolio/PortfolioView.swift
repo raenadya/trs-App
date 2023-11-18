@@ -23,7 +23,9 @@ struct PortfolioView: View {
                 .navigationTitle("My Portfolio")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        EditButton()
+                        if filterManager.currentSelection != .all {
+                            EditButton()
+                        }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
@@ -43,7 +45,18 @@ struct PortfolioView: View {
         List {
             switch filterManager.currentSelection {
             case .all:
-                EmptyView()
+                ForEach(credentials, id: \.id) { credential in
+                    switch credential {
+                    case .achievementAndHonour(let achievementAndHonour):
+                        Text(achievementAndHonour.title)
+                    case .competition(let competition):
+                        Text(competition.title)
+                    case .experience(let experience):
+                        Text(experience.title)
+                    case .project(let project):
+                        Text(project.title)
+                    }
+                }
             case .experiences:
                 ForEach(credentialsManager.experiences, id: \.id) { experience in
                     Text(experience.title)
@@ -75,8 +88,16 @@ struct PortfolioView: View {
             }
         }
     }
+    
+    var credentials: [Credential] {
+        var credentials = credentialsManager.achievementAndHonours.map { Credential.achievementAndHonour($0) } +
+        credentialsManager.experiences.map { Credential.experience($0) } +
+        credentialsManager.competitions.map { Credential.competition($0) } +
+        credentialsManager.projects.map { Credential.project($0) }
+        credentials.sort(by: { $0.dateAdded > $1.dateAdded })
+        return credentials
+    }
 }
-
 
 struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {
