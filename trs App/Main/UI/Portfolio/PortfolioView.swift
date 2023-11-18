@@ -60,39 +60,39 @@ struct PortfolioView: View {
                 ForEach(credentials, id: \.id) { credential in
                     switch credential {
                     case .achievementAndHonour(let achievementAndHonour):
-                        Text(achievementAndHonour.title)
+                        listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
                     case .competition(let competition):
-                        Text(competition.title)
+                        listRowPreview(title: competition.title, description: competition.description)
                     case .experience(let experience):
-                        Text(experience.title)
+                        listRowPreview(title: experience.title, description: experience.description)
                     case .project(let project):
-                        Text(project.title)
+                        listRowPreview(title: project.title, description: project.description)
                     }
                 }
             case .experiences:
                 ForEach(credentialsManager.experiences, id: \.id) { experience in
-                    Text(experience.title)
+                    listRowPreview(title: experience.title, description: experience.description)
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
                 }
             case .competitions:
                 ForEach(credentialsManager.competitions, id: \.id) { competition in
-                    Text(competition.title)
+                    listRowPreview(title: competition.title, description: competition.description)
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
                 }
             case .achievementsAndHonours:
                 ForEach(credentialsManager.achievementAndHonours, id: \.id) { achievementAndHonour in
-                    Text(achievementAndHonour.title)
+                    listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
                 }
             case .projects:
                 ForEach(credentialsManager.projects, id: \.id) { project in
-                    Text(project.title)
+                    listRowPreview(title: project.title, description: project.description)
                 }
                 .onDelete { indexOffset in
                     credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
@@ -108,6 +108,20 @@ struct PortfolioView: View {
         credentialsManager.projects.map { Credential.project($0) }
         credentials.sort(by: { $0.dateAdded > $1.dateAdded })
         return credentials
+    }
+    
+    @ViewBuilder
+    func listRowPreview(title: String, description: String?) -> some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .fontWeight(.bold)
+            if let description = description, !description.isEmpty && description != " " {
+                Text(description)
+                    .lineLimit(2)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
     }
 }
 
