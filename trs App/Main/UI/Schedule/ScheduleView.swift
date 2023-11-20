@@ -9,12 +9,18 @@ import SwiftUI
 
 struct ScheduleView: View {
     
+    
     @State private var addSheet = false
+    @State private var scheduledItems = ["Schedule your activities in this section!"]
     
     var body: some View {
         NavigationStack{
-            VStack{
-                Text("hi")
+            List {
+                ForEach(scheduledItems, id: \.self) { item in
+                    Text(item)
+                }
+                .onDelete(perform: deleteItems)
+                Text("")
             }
             .navigationTitle("Schedule")
             .toolbar{
@@ -23,6 +29,8 @@ struct ScheduleView: View {
                         addSheet = true
                     }label:{
                         Image(systemName:"plus")
+                        
+                        
                     }
                 }
             }
@@ -30,6 +38,10 @@ struct ScheduleView: View {
         .sheet(isPresented: $addSheet){
             AddSheetView()
         }
+    }
+    
+    func deleteItems (at offsets: IndexSet) {
+        scheduledItems.remove(atOffsets:offsets)
     }
 }
 

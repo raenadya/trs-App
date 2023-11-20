@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D3021B52B0865D7006F8939 /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3021B42B0865D7006F8939 /* AddSheetView.swift */; };
 		1DAD4DB32B0721A90069572A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD4DB22B0721A90069572A /* AvatarView.swift */; };
+		9041988E2B0AFA6B003652F9 /* EditCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9041988D2B0AFA6B003652F9 /* EditCredentialView.swift */; };
 		90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF1F2AA5718F00E28133 /* trs_AppApp.swift */; };
 		90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF212AA5718F00E28133 /* ContentView.swift */; };
 		90AEEF242AA5719000E28133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AEEF232AA5719000E28133 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		1D3021B42B0865D7006F8939 /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
 		1DAD4DB22B0721A90069572A /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		9041988D2B0AFA6B003652F9 /* EditCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCredentialView.swift; sourceTree = "<group>"; };
 		90AEEF1C2AA5718F00E28133 /* trs App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "trs App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AEEF1F2AA5718F00E28133 /* trs_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trs_AppApp.swift; sourceTree = "<group>"; };
 		90AEEF212AA5718F00E28133 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				F36CA2802B06712B0097620C /* PortfolioView.swift */,
 				F33E68BB2B086E7F00DED94F /* CredentialInformationView.swift */,
+				9041988D2B0AFA6B003652F9 /* EditCredentialView.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				F36CA28F2B0683B30097620C /* CategoriesView.swift in Sources */,
 				90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */,
 				90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */,
+				9041988E2B0AFA6B003652F9 /* EditCredentialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,23 +10,48 @@ import SwiftUI
 struct CredentialInformationView: View {
     
     @State var credential: Credential
-    
+
     var body: some View {
         List {
-            Section {
-                Text(credential.title)
+            Section("Organiser") {
                 Text(credential.organiserName)
             }
-            
-            if let description = credential.description {
-                Text(description)
+            Section("Date") {
+                Text(credential.startDate, style: .date)
+                Text(credential.endDate, style: .date)
             }
+            Section("Description") {
+                Text(credential.description!)
+            }
+            Section("Documents") {
+                // document
+            }
+            Section("Tag") {
+                // Text($credential.competitionTagSelection)
+                // Text($credential.experienceTagSelection)
+            }
+        }
+        .navigationTitle(credential.title)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                EditButton()
+            }
+            
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                NavigationLink {
+//                    EditCredentialView
+//                } label: {
+//                    Text("Edit")
+//                }
+//            }
         }
     }
 }
+
 
 //struct CredentialInformationView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CredentialInformationView()
 //    }
 //}
+
