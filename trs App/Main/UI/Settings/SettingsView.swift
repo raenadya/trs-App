@@ -23,10 +23,6 @@ struct SettingsView: View {
             List {
                 Text("Account")
                 Text("Notifications")
-                Text("Appearance")
-                Text("Privacy & Security")
-                Text("Help & Support")
-                Text("Acknowledgements")
                 
                 signOutButton
             }

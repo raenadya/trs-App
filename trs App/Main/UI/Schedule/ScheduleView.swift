@@ -11,7 +11,7 @@ struct ScheduleView: View {
     
     
     @State private var addSheet = false
-    @State private var scheduledItems = ["Schedule your activities in this section!"]
+    @State private var scheduledItems = ["Schedule your upcoming activities here!"]
     
     var body: some View {
         NavigationStack{
@@ -29,8 +29,6 @@ struct ScheduleView: View {
                         addSheet = true
                     }label:{
                         Image(systemName:"plus")
-                        
-                        
                     }
                 }
             }
