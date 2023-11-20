@@ -23,6 +23,8 @@ struct AuthenticationView: View {
     }
 }
 
-#Preview {
-    AuthenticationView()
+struct AuthenticationView_Previews: PreviewProvider {
+    static var previews: some View {
+        AuthenticationView()
+    }
 }

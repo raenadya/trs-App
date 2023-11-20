@@ -149,6 +149,9 @@ struct SignUpView: View {
     }
 }
 
-#Preview {
-    SignUpView(signInView: .constant(false))
+struct SignUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("Hello, world!")
+        SignUpView(signInView: .constant(false))
+    }
 }
