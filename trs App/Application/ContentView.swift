@@ -16,7 +16,7 @@ struct ContentView: View {
             TabView {
                 PortfolioView()
                     .tabItem {
-                        Label("My Portfolio", systemImage: "book.pages.fill")
+                        Label("My Portfolio", systemImage: "book")
                     }
                 ScheduleView()
                     .tabItem {
