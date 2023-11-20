@@ -21,8 +21,14 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Text("Account")
-                Text("Notifications")
+                
+                NavigationLink(destination: AccountView()) {
+                    Text("Account")
+                }
+                
+                NavigationLink(destination:NotificationView()){
+                    Text("Notifications")
+                }
                 
                 signOutButton
             }
