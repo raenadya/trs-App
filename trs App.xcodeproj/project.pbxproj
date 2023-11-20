@@ -25,7 +25,6 @@
 		F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2922B06F8D70097620C /* FilterManager.swift */; };
 		F36CA2962B06FBBF0097620C /* NewCredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */; };
 		F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2972B0709160097620C /* CredentialsManager.swift */; };
-		F3C6EDEA2B0AF294002D32F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3C6EDE92B0AF294002D32F7 /* GoogleService-Info.plist */; };
 		F3C6EDED2B0AF2CA002D32F7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F3C6EDEC2B0AF2CA002D32F7 /* FirebaseAnalytics */; };
 		F3C6EDEF2B0AF2CA002D32F7 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = F3C6EDEE2B0AF2CA002D32F7 /* FirebaseAnalyticsOnDeviceConversion */; };
 		F3C6EDF12B0AF2CA002D32F7 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F3C6EDF02B0AF2CA002D32F7 /* FirebaseAnalyticsSwift */; };
@@ -78,7 +77,6 @@
 		F36CA2922B06F8D70097620C /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
 		F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCredentialsView.swift; sourceTree = "<group>"; };
 		F36CA2972B0709160097620C /* CredentialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsManager.swift; sourceTree = "<group>"; };
-		F3C6EDE92B0AF294002D32F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3C6EE222B0AF329002D32F7 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		F3C6EE232B0AF32A002D32F7 /* AuthenticationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		F3C6EE242B0AF32A002D32F7 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				F36CA27D2B0670C50097620C /* Application */,
 				F36CA27E2B0670D90097620C /* Main */,
 				90AEEF232AA5719000E28133 /* Assets.xcassets */,
-				F3C6EDE92B0AF294002D32F7 /* GoogleService-Info.plist */,
 				90AEEF252AA5719000E28133 /* Preview Content */,
 			);
 			path = "trs App";
@@ -366,7 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90AEEF272AA5719000E28133 /* Preview Assets.xcassets in Resources */,
-				F3C6EDEA2B0AF294002D32F7 /* GoogleService-Info.plist in Resources */,
 				90AEEF242AA5719000E28133 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
