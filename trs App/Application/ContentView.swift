@@ -8,20 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var authManager: AuthenticationManager = .shared
+    
     var body: some View {
-        TabView {
-            PortfolioView()
-                .tabItem {
-                    Label("My Portfolio", systemImage: "book.pages.fill")
-                }
-            ScheduleView()
-                .tabItem {
-                    Label("Schedule", systemImage: "calendar")
-                }
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
-                }
+        if authManager.isLoggedIn {
+            TabView {
+                PortfolioView()
+                    .tabItem {
+                        Label("My Portfolio", systemImage: "book.pages.fill")
+                    }
+                ScheduleView()
+                    .tabItem {
+                        Label("Schedule", systemImage: "calendar")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape.fill")
+                    }
+            }
+        } else {
+            AuthenticationView()
         }
     }
 }
