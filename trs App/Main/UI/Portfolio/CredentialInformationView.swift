@@ -45,20 +45,20 @@ struct CredentialInformationView: View {
             
         }
         .navigationTitle(credential.title)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton() {
-                    showingEditCredentialView.toggle()
-                }
-                
-            }
-        }
-        .sheet(isPresented: $showingEditCredentialView) {
-            CredentialInformationView(credential: $showingEditCredentialView, showingEditCredentialView: showingEditCredentialView)
-        }
-        
-        
-        
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                EditButton() {
+//                    showingEditCredentialView.toggle()
+//                }
+//
+//            }
+//        }
+//        .sheet(isPresented: $showingEditCredentialView) {
+//            CredentialInformationView(credential: $showingEditCredentialView, showingEditCredentialView: showingEditCredentialView)
+//        }
+//
+//
+//
         //struct CredentialInformationView_Previews: PreviewProvider {
         //    static var previews: some View {
         //        CredentialInformationView()
