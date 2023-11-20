@@ -12,8 +12,8 @@ struct AddSheetView: View {
     @State private var activityName = ""
     @State private var organiserName = ""
     @State private var description = ""
-    @State private var start = Date()
-    @State private var end = Date()
+    @State var startDate = Date()
+    @State var endDate = Date()
     
     var body: some View {
         NavigationStack{
@@ -25,11 +25,11 @@ struct AddSheetView: View {
                     }
                         
                     Section("") {
-                        DatePicker(selection: $start, in: ...Date(), displayedComponents: .date) {
+                        DatePicker(selection: $startDate, in: ...Date(), displayedComponents: .date) {
                             Text("Start Date")
                         }
                         
-                        DatePicker(selection: $start, in: ...Date(), displayedComponents: .date) {
+                        DatePicker(selection: $endDate, in: ...Date(), displayedComponents: .date) {
                             Text("End Date")
                         }
                     }

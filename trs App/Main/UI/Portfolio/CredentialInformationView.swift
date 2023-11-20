@@ -10,6 +10,7 @@ import SwiftUI
 struct CredentialInformationView: View {
     
     @State var credential: Credential
+    @State private var isEditing = false
     
     var body: some View {
         List {
@@ -43,19 +44,22 @@ struct CredentialInformationView: View {
             }
             
             
+            
         }
         .navigationTitle(credential.title)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
+            EditButton(placement: .navigationBarTrailing) {
+                if isEditing = true {
+                    NavigationLink(destination: EditCredentialView);, isActive: $isEditing)
+                }
             }
         }
     }
 }
 
 
-//struct CredentialInformationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CredentialInformationView()
-//    }
-//}
+    //struct CredentialInformationView_Previews: PreviewProvider {
+    //    static var previews: some View {
+    //        CredentialInformationView()
+    //    }
+    //}

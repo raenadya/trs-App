@@ -25,6 +25,8 @@ struct EditCredentialView: View {
     @State var additionalInfo = ""
     @State var documents = ""
     
+    @State var credential: Credential
+    
     @State var competitionTagSelection: CompetitionTagType = .stem
     @State var experienceTagSelection: ExperienceTagType = .communityService
     
@@ -79,6 +81,39 @@ struct EditCredentialView: View {
             let calendar = Calendar(identifier: .gregorian)
             startDate = calendar.startOfDay(for: Date())
             endDate = calendar.startOfDay(for: Date())
+            
+            switch credential {
+            case .experience(let experience):
+                title = experience.title
+                organiser = experience.organiserName
+                startDate = experience.startDate
+                endDate = experience.endDate
+                description = experience.description!
+                additionalInfo = experience.additionalInformation!
+                
+            case .competition(let competition):
+                title = competition.title
+                organiser = competition.organiserName
+                achievement = competition.achievementLevel
+                startDate = competition.startDate
+                endDate = competition.endDate
+                description = competition.description!
+
+            case .achievementAndHonour(let achievementAndHonour):
+                title = achievementAndHonour.title
+                organiser = achievementAndHonour.organiserName
+                achievement = achievementAndHonour.achievementLevel
+                startDate = achievementAndHonour.startDate
+                endDate = achievementAndHonour.endDate
+                description = achievementAndHonour.description!
+
+            case .project(let project):
+                title = project.title
+                organiser = project.organiserName
+                startDate = project.startDate
+                endDate = project.endDate
+                description = project.description!
+            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
