@@ -10,9 +10,27 @@ import SwiftUI
 
 
 struct AccountView: View {
+    
+    @State private var textEntered = ""
+    
     var body: some View {
-        List{
-            Text("hi")
+        
+        NavigationStack{
+            
+            List{
+                TextField("What is your name?", text: $textEntered)
+                    .textFieldStyle(.roundedBorder)
+                
+                Text(textEntered == "" ? "" : "Hello, \(textEntered)!")
+            }
+            
+            .navigationTitle("Account")
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+            }
+            
         }
     }
 }
