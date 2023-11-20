@@ -9,7 +9,9 @@ import SwiftUI
 
 struct AddSheetView: View {
     
-    @State private var textEntered = ""
+    @State private var activityName = ""
+    @State private var organiserName = ""
+    @State private var description = ""
     @State private var start = Date()
     @State private var end = Date()
     
@@ -18,8 +20,8 @@ struct AddSheetView: View {
             VStack{
                 Form{
                     Section(""){
-                        TextField("Competition Name", text:$textEntered)
-                        TextField("Organiser Name", text: $textEntered)
+                        TextField("Activity Name", text:$activityName)
+                        TextField("Organiser Name", text: $organiserName)
                     }
                         
                     Section("") {
@@ -33,7 +35,7 @@ struct AddSheetView: View {
                     }
                     
                     Section(""){
-                        TextField("Description", text: $textEntered)
+                        TextField("Description", text: $description)
                         }
                     }
                 Text("All The Best!")
