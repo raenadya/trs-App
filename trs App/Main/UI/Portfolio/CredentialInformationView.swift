@@ -10,7 +10,7 @@ import SwiftUI
 struct CredentialInformationView: View {
     
     @State var credential: Credential
-
+    
     var body: some View {
         List {
             Section("Organiser") {
@@ -27,23 +27,28 @@ struct CredentialInformationView: View {
                 // document
             }
             Section("Tag") {
-                // Text($credential.competitionTagSelection)
-                // Text($credential.experienceTagSelection)
+                switch credential {
+                case .experience(let experience):
+                    Text(experience.tag.rawValue)
+                    
+                case .competition(let competition):
+                    Text(competition.tag.rawValue)
+                    
+                case .achievementAndHonour(let achievementAndHonour):
+                    Text("")
+                    
+                case .project(let project):
+                    Text("")
+                }
             }
+            
+            
         }
         .navigationTitle(credential.title)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
-            
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                NavigationLink {
-//                    EditCredentialView
-//                } label: {
-//                    Text("Edit")
-//                }
-//            }
         }
     }
 }
@@ -54,4 +59,3 @@ struct CredentialInformationView: View {
 //        CredentialInformationView()
 //    }
 //}
-
