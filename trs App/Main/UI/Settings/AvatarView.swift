@@ -58,8 +58,8 @@ struct AvatarView: View {
         
         
         .scaledToFit()
-        .frame(height:700)
-        .frame(width:600)
+        .frame(height:730)
+        .frame(width:550)
         
     }
     

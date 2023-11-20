@@ -13,9 +13,7 @@ struct AddSheetView: View {
     @State private var organiserName = ""
     @State private var description = ""
     @State private var startDate = Date()
-    @State private var endDate = Date()
-    @State var startDate = Date()
-    @State var endDate = Date()
+    @State private var endDate = Date()    
     
     var body: some View {
         NavigationStack{
@@ -43,6 +41,16 @@ struct AddSheetView: View {
                 Text("All The Best!")
                     .font(.largeTitle)
                     .foregroundColor(.purple)
+                    .navigationTitle("Add Competition")
+                    .toolbar{
+                        ToolbarItem(placement:. navigationBarTrailing){
+                            Button{
+                                print("Add button tapped.")
+                            }label:{
+                                Text("Add")
+                            }
+                        }
+                    }
                 }
             }
         }
