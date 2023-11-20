@@ -12,6 +12,8 @@ struct AddSheetView: View {
     @State private var activityName = ""
     @State private var organiserName = ""
     @State private var description = ""
+    @State private var startDate = Date()
+    @State private var endDate = Date()
     @State var startDate = Date()
     @State var endDate = Date()
     
