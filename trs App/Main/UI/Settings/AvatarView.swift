@@ -23,7 +23,7 @@ struct AvatarView: View {
                 .frame(width:150)
                 .frame(height:150)
             
-            Text("Avatar")
+            Text("Me")
                 .font(.largeTitle)
             
             HStack(spacing:40){
@@ -56,10 +56,9 @@ struct AvatarView: View {
             }
         }
         
-        
         .scaledToFit()
-        .frame(height:730)
-        .frame(width:550)
+        .frame(height:600)
+        .frame(width:400)
         
     }
     
