@@ -27,7 +27,7 @@ struct SignUpView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Join [APP NAME]!")
+            Text("Join Purrfolio!")
                 .fontWeight(.black)
                 .font(.system(size: 35))
                 .padding(.horizontal)

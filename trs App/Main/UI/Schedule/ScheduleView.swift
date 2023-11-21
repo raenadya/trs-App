@@ -12,6 +12,7 @@ struct ScheduleView: View {
     @State private var showingNewEventView = false
     
     @ObservedObject var seManager: ScheduleEventManager = .shared
+    @ObservedObject var notificationManager: NotificationManager = .shared
         
     var body: some View {
         NavigationStack {

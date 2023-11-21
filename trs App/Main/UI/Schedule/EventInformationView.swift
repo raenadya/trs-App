@@ -21,6 +21,7 @@ struct EventInformationView: View {
     @Environment(\.editMode) var editMode
     
     @ObservedObject var seManager: ScheduleEventManager = .shared
+    @ObservedObject var notificationManager: NotificationManager = .shared
     
     @Persistent("scheduledEvents") var scheduledEvents: [Event] = []
     

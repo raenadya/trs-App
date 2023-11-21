@@ -29,7 +29,7 @@ struct SignInView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("[APP NAME]")
+            Text("Purrfolio")
                 .fontWeight(.black)
                 .font(.system(size: 35))
                 .padding(.horizontal)

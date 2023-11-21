@@ -29,13 +29,15 @@ struct NewEventView: View {
     @Persistent("scheduledEvents") var scheduledEvents: [Event] = []
     
     @ObservedObject var seManager: ScheduleEventManager = .shared
+    @ObservedObject var notificationManager: NotificationManager = .shared
     
     var body: some View {
         NavigationStack {
             VStack {
                 List {
                     Section("Information *") {
-                        TextField("Event Name", text: $eventName)
+                        TextField("Event Name",
+                                  text: $eventName)
                         TextField("Organiser Name", text: $organiserName)
                     }
                     
@@ -62,12 +64,20 @@ struct NewEventView: View {
             .toolbar {
                 ToolbarItem(placement:. navigationBarTrailing) {
                     Button {
+                        let eventUUID = UUID()
                         seManager.addToScheduledEvents(
-                            withValue: Event(eventName: eventName,
+                            withValue: Event(id: eventUUID,
+                                             eventName: eventName,
                                              organiserName: organiserName,
                                              description: description,
                                              startDate: startDate,
                                              endDate: endDate)
+                        )
+                        notificationManager.addNotification(
+                            uuid: eventUUID,
+                            title: "Event in 30 minutes",
+                            subtitle: "Your Event \"\(eventName)\" by \"\(organiserName)\" starts in 30 minutes.", 
+                            startDate: startDate
                         )
                         dismiss.callAsFunction()
                     } label: {
@@ -75,11 +85,6 @@ struct NewEventView: View {
                     }
                     .disabled(disabled)
                 }
-            }
-            .onAppear {
-                let calendar = Calendar(identifier: .gregorian)
-                startDate = calendar.startOfDay(for: Date())
-                endDate = calendar.startOfDay(for: Date())
             }
         }
     }
