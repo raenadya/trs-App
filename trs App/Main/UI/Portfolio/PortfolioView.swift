@@ -63,13 +63,13 @@ struct PortfolioView: View {
                         NavigationLink {
                             CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
                         } label: {
-                            listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                            listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.achievementLevel)
                         }
                     case .competition(let competition):
                         NavigationLink {
                             CredentialInformationView(credential: Credential.competition(competition))
                         } label: {
-                            listRowPreview(title: competition.title, description: competition.description)
+                            listRowPreview(title: competition.title, description: competition.achievementLevel)
                         }
                     case .experience(let experience):
                         NavigationLink {
@@ -101,7 +101,7 @@ struct PortfolioView: View {
                     NavigationLink {
                         CredentialInformationView(credential: Credential.competition(competition))
                     } label: {
-                        listRowPreview(title: competition.title, description: competition.description)
+                        listRowPreview(title: competition.title, description: competition.achievementLevel)
                     }
                 }
                 .onDelete { indexOffset in
@@ -112,7 +112,7 @@ struct PortfolioView: View {
                     NavigationLink {
                         CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
                     } label: {
-                        listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                        listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.achievementLevel)
                     }
                 }
                 .onDelete { indexOffset in
