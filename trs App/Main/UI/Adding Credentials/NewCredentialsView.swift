@@ -30,6 +30,8 @@ struct NewCredentialsView: View {
     
     @State var openFileDirectory = false
     
+    @State var rating = 0
+    
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var credentialsManager: CredentialsManager = .shared
@@ -39,25 +41,25 @@ struct NewCredentialsView: View {
         case .all:
             return true
         case .experiences:
-            if !title.isEmpty && !organiser.isEmpty {
+            if !title.isEmpty && !organiser.isEmpty && rating > 0 {
                 return false
             } else {
                 return true
             }
         case .competitions:
-            if !title.isEmpty && !organiser.isEmpty && !achievement.isEmpty {
+            if !title.isEmpty && !organiser.isEmpty && !achievement.isEmpty && rating > 0 {
                 return false
             } else {
                 return true
             }
         case .achievementsAndHonours:
-            if !title.isEmpty && !organiser.isEmpty && !achievement.isEmpty {
+            if !title.isEmpty && !organiser.isEmpty && !achievement.isEmpty && rating > 0 {
                 return false
             } else {
                 return true
             }
         case .projects:
-            if !title.isEmpty && !organiser.isEmpty {
+            if !title.isEmpty && !organiser.isEmpty && rating > 0 {
                 return false
             } else {
                 return true
@@ -71,7 +73,10 @@ struct NewCredentialsView: View {
             durationSection
             secondaryInfoSection
             documentsSection
-            tagSection
+            importanceSection
+            if forType == .experiences || forType == .competitions {
+                tagSection
+            }
         }
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
@@ -116,6 +121,8 @@ struct NewCredentialsView: View {
             if forType == .achievementsAndHonours || forType == .competitions {
                 TextField("Achievement Level", text: $achievement)
             }
+        } header: {
+            Text("Information *")
         } footer: {
             if forType == .achievementsAndHonours {
                 Text("e.g. Distinction/3rd/Silver")
@@ -126,7 +133,7 @@ struct NewCredentialsView: View {
     }
     
     var durationSection: some View {
-        Section {
+        Section("Dates *") {
             DatePicker("Start Date", selection: $startDate, in: ...endDate, displayedComponents: .date)
             DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: .date)
         }
@@ -136,13 +143,22 @@ struct NewCredentialsView: View {
         Section {
             TextField("Description", text: $description, axis: .vertical)
             if forType == .experiences {
-                additionalInfoSection
+                TextField("Additional Information (Service hours etc.)", text: $additionalInfo, axis: .vertical)
+            }
+        } footer: {
+            switch forType {
+            case .all:
+                EmptyView()
+            case .experiences:
+                Text("Describe what the experience. For leadership, describe the event you lead/assist in, what you did & the result. For community service, state what you did to help others/environment etc & how long did you spent on it.")
+            case .competitions:
+                Text("Describe what the competition was about, what you experienced, the challenges you faced, and the insights you gained.")
+            case .achievementsAndHonours:
+                EmptyView()
+            case .projects:
+                Text("Describe the topic of the project, the research you did / experiment you conducted, conclusion & how this is linked to how you are as a person (passion, interest, etc)")
             }
         }
-    }
-    
-    var additionalInfoSection: some View {
-        TextField("Additional Information", text: $additionalInfo, axis: .vertical)
     }
     
     var documentsSection: some View {
@@ -150,6 +166,8 @@ struct NewCredentialsView: View {
             Button("Add documents via Files") {
                 openFileDirectory.toggle()
             }
+        } header: {
+            Text("Documents")
         } footer: {
             Text("Add any documents that you need.")
         }
@@ -157,7 +175,9 @@ struct NewCredentialsView: View {
     
     var importanceSection: some View {
         Section {
-            TextField("Importance", text: $documents)
+            RatingView(rating: $rating, label: "Importance")
+        } header: {
+            Text("Importance *")
         } footer: {
             switch forType {
             case .experiences:
@@ -173,7 +193,7 @@ struct NewCredentialsView: View {
     }
     
     var tagSection: some View {
-        Section {
+        Section("Tag") {
             if forType == .experiences {
                 Picker("Tag", selection: $experienceTagSelection) {
                     ForEach(ExperienceTagType.allCases, id: \.rawValue) { tag in
@@ -204,7 +224,8 @@ struct NewCredentialsView: View {
                                                                       endDate: endDate,
                                                                       description: description,
                                                                       additionalInformation: additionalInfo,
-                                                                      tag: experienceTagSelection)
+                                                                      tag: experienceTagSelection,
+                                                                      importance: rating)
             )
         case .competitions:
             credentialsManager.addToCompetitions(withValue: Competition(dateAdded: Date(),
@@ -214,7 +235,8 @@ struct NewCredentialsView: View {
                                                                         startDate: startDate,
                                                                         endDate: endDate,
                                                                         description: description,
-                                                                        tag: competitionTagSelection)
+                                                                        tag: competitionTagSelection,
+                                                                        importance: rating)
             )
         case .achievementsAndHonours:
             credentialsManager.addToAchievementAndHonours(withValue: AchievementAndHonour(dateAdded: Date(),
@@ -223,7 +245,8 @@ struct NewCredentialsView: View {
                                                                                           achievementLevel: achievement,
                                                                                           startDate: startDate,
                                                                                           endDate: endDate,
-                                                                                          description: description)
+                                                                                          description: description,
+                                                                                          importance: rating)
             )
         case .projects:
             credentialsManager.addToProjects(withValue: Project(dateAdded: Date(),
@@ -231,7 +254,8 @@ struct NewCredentialsView: View {
                                                                 organiserName: organiser,
                                                                 startDate: startDate,
                                                                 endDate: endDate,
-                                                                description: description)
+                                                                description: description, 
+                                                                importance: rating)
             )
         }
         showingCredentialInformation = false

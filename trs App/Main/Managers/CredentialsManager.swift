@@ -18,6 +18,7 @@ struct Experience: Codable, Identifiable {
     var description: String?
     var additionalInformation: String?
     var tag: ExperienceTagType
+    var importance: Int
 }
 
 enum ExperienceTagType: String, Codable, CaseIterable {
@@ -36,6 +37,7 @@ struct Competition: Codable, Identifiable {
     var endDate: Date
     var description: String?
     var tag: CompetitionTagType
+    var importance: Int
 }
 
 enum CompetitionTagType: String, Codable, CaseIterable {
@@ -56,6 +58,7 @@ struct AchievementAndHonour: Codable, Identifiable {
     var startDate: Date
     var endDate: Date
     var description: String?
+    var importance: Int
 }
 
 struct Project: Codable, Identifiable {
@@ -66,6 +69,7 @@ struct Project: Codable, Identifiable {
     var startDate: Date
     var endDate: Date
     var description: String?
+    var importance: Int
 }
 
 enum Credential: Codable, Identifiable {
@@ -73,6 +77,19 @@ enum Credential: Codable, Identifiable {
     case competition(Competition)
     case achievementAndHonour(AchievementAndHonour)
     case project(Project)
+    
+    var type: CategoryType {
+        switch self {
+        case .experience(_):
+            return .experiences
+        case .competition(_):
+            return .competitions
+        case .achievementAndHonour(_):
+            return .achievementsAndHonours
+        case .project(_):
+            return .projects
+        }
+    }
     
     var dateAdded: Date {
         switch self {
@@ -162,6 +179,19 @@ enum Credential: Codable, Identifiable {
             return achievementAndHonour.endDate
         case .project(let project):
             return project.endDate
+        }
+    }
+    
+    var importance: Int {
+        switch self {
+        case .experience(let experience):
+            return experience.importance
+        case .competition(let competition):
+            return competition.importance
+        case .achievementAndHonour(let achievementAndHonour):
+            return achievementAndHonour.importance
+        case .project(let project):
+            return project.importance
         }
     }
 
