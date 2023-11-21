@@ -9,28 +9,17 @@ import SwiftUI
 
 struct NotificationView: View {
     
-    @State private var NotificationBeforeCompetition = true
-    @State private var NotificationAfterCompeition = true
-
+    @AppStorage("notifyBeforeCompetition") private var notifyBeforeCompetition = true
+    @AppStorage("notifyAfterCompeition") private var notifyAfterCompeition = true
     
     var body: some View {
-        
-        NavigationStack{
-        
-            List{
-                
-                Section(""){
-                    Toggle("Notification Before Competition", isOn: $NotificationBeforeCompetition)
-                    
-                    Toggle("Notification After Competition", isOn: $NotificationAfterCompeition)
-                }
-                
+        List {
+            Section {
+                Toggle("Notify Before Competition", isOn: $notifyBeforeCompetition)
+                Toggle("Notify After Competition", isOn: $notifyAfterCompeition)
             }
-            
-            
-            .navigationTitle("Notification")
-            
         }
+        .navigationTitle("Notifications")
     }
 }
 

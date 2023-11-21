@@ -63,13 +63,13 @@ struct PortfolioView: View {
                         NavigationLink {
                             CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
                         } label: {
-                            listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.achievementLevel)
+                            listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
                         }
                     case .competition(let competition):
                         NavigationLink {
                             CredentialInformationView(credential: Credential.competition(competition))
                         } label: {
-                            listRowPreview(title: competition.title, description: competition.achievementLevel)
+                            listRowPreview(title: competition.title, description: competition.description)
                         }
                     case .experience(let experience):
                         NavigationLink {

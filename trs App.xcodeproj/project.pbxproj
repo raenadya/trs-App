@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3021B52B0865D7006F8939 /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3021B42B0865D7006F8939 /* AddSheetView.swift */; };
+		1D3021B52B0865D7006F8939 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3021B42B0865D7006F8939 /* NewEventView.swift */; };
 		1DA2C95C2B0B446200809671 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95B2B0B446200809671 /* AccountView.swift */; };
 		1DA2C9602B0B460700809671 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95F2B0B460700809671 /* NotificationView.swift */; };
 		1DAD4DB32B0721A90069572A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD4DB22B0721A90069572A /* AvatarView.swift */; };
@@ -60,10 +60,11 @@
 		F3C6EE2A2B0AF389002D32F7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C6EE292B0AF389002D32F7 /* AuthenticationManager.swift */; };
 		F3C6EE2C2B0AFB74002D32F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3C6EE2B2B0AFB74002D32F7 /* GoogleService-Info.plist */; };
 		F3C6EE2F2B0C4227002D32F7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C6EE2E2B0C4227002D32F7 /* RatingView.swift */; };
+		F3C6EE312B0C59B6002D32F7 /* ScheduleEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C6EE302B0C59B6002D32F7 /* ScheduleEventManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D3021B42B0865D7006F8939 /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
+		1D3021B42B0865D7006F8939 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 		1DA2C95B2B0B446200809671 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		1DA2C95F2B0B460700809671 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		1DAD4DB22B0721A90069572A /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		F3C6EE292B0AF389002D32F7 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		F3C6EE2B2B0AFB74002D32F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3C6EE2E2B0C4227002D32F7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		F3C6EE302B0C59B6002D32F7 /* ScheduleEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEventManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				F36CA2922B06F8D70097620C /* FilterManager.swift */,
 				F36CA2972B0709160097620C /* CredentialsManager.swift */,
 				F3C6EE292B0AF389002D32F7 /* AuthenticationManager.swift */,
+				F3C6EE302B0C59B6002D32F7 /* ScheduleEventManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -247,7 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				F36CA2822B0674EE0097620C /* ScheduleView.swift */,
-				1D3021B42B0865D7006F8939 /* AddSheetView.swift */,
+				1D3021B42B0865D7006F8939 /* NewEventView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -406,7 +409,7 @@
 				90B0A1E62B0845BC0001C32F /* TipsView.swift in Sources */,
 				F36CA2832B0674EE0097620C /* ScheduleView.swift in Sources */,
 				F36CA2962B06FBBF0097620C /* NewCredentialsView.swift in Sources */,
-				1D3021B52B0865D7006F8939 /* AddSheetView.swift in Sources */,
+				1D3021B52B0865D7006F8939 /* NewEventView.swift in Sources */,
 				F36CA28D2B06834D0097620C /* FilterButtons.swift in Sources */,
 				F36CA2932B06F8D70097620C /* FilterManager.swift in Sources */,
 				F33E68BC2B086E7F00DED94F /* CredentialInformationView.swift in Sources */,
@@ -414,6 +417,7 @@
 				F3C6EE262B0AF32A002D32F7 /* AuthenticationView.swift in Sources */,
 				90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */,
 				F3C6EE252B0AF32A002D32F7 /* SignInView.swift in Sources */,
+				F3C6EE312B0C59B6002D32F7 /* ScheduleEventManager.swift in Sources */,
 				F3C6EE272B0AF32A002D32F7 /* SignUpView.swift in Sources */,
 				1DA2C95C2B0B446200809671 /* AccountView.swift in Sources */,
 				90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */,

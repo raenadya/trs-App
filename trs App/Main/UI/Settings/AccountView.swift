@@ -14,32 +14,22 @@ struct AccountView: View {
     @State private var textEntered = ""
     
     var body: some View {
-        
         NavigationStack{
-            
-            List{
-                
-                Section("Me")
-                {
+            List {
+                Section("Me") {
                     TextField("What is your Name?", text: $textEntered)
-                        .textFieldStyle(.roundedBorder)
-                    
                     Text(textEntered == "" ? "" : "Hello, \(textEntered)!")
                 }
-                
                 Section("Mail Information"){
                     
                 }
-                
             }
-            
             .navigationTitle("Account")
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
             }
-            
         }
     }
 }

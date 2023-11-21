@@ -9,24 +9,46 @@ import SwiftUI
 
 struct ScheduleView: View {
     
+    @State private var showingNewEventView = false
     
-    @State private var addSheet = false
-    
+    @ObservedObject var seManager: ScheduleEventManager = .shared
+        
     var body: some View {
-        NavigationStack{
-            List {
-                Section("Schedule your upcoming activities/compeitions here!")
-                {
-                    //code
+        NavigationStack {
+            VStack {
+                if !seManager.scheduledEvents.isEmpty {
+                    List {
+                        Section("Upcoming Events") {
+                            ForEach(seManager.scheduledEvents) { event in
+                                VStack(alignment: .leading) {
+                                    Text(event.eventName)
+                                        .fontWeight(.bold)
+                                    if let description = event.description, !description.isEmpty, description != " " {
+                                        Text(description)
+                                            .lineLimit(2)
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+                            }
+                            .onDelete { index in
+                                seManager.removeScheduledEvent(atOffset: index)
+                            }
+                        }
+                    }
+                } else {
+                    Text("Schedule your events and receive a notification to remind you to update your portfolio here!")
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.center)
                 }
             }
             .navigationTitle("Schedule")
-            .toolbar{
-                ToolbarItemGroup{
-                    Button{
-                        addSheet = true
-                    }label:{
-                        Image(systemName:"plus")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingNewEventView.toggle()
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
                 
@@ -34,15 +56,15 @@ struct ScheduleView: View {
                     EditButton()
                 }
             }
-                
-            }
-        .sheet(isPresented: $addSheet){
-            AddSheetView()
+            
         }
+        .sheet(isPresented: $showingNewEventView) {
+            NewEventView()
         }
     }
-    
-    
+}
+
+
 
 
 struct ScheduleView_Previews: PreviewProvider {
