@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D3021B52B0865D7006F8939 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3021B42B0865D7006F8939 /* NewEventView.swift */; };
-		1DA2C95C2B0B446200809671 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95B2B0B446200809671 /* AccountView.swift */; };
-		1DA2C9602B0B460700809671 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95F2B0B460700809671 /* NotificationView.swift */; };
+		1DA2C95C2B0B446200809671 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95B2B0B446200809671 /* AccountInfo.swift */; };
+		1DA2C9602B0B460700809671 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95F2B0B460700809671 /* NotificationsView.swift */; };
 		1DAD4DB32B0721A90069572A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD4DB22B0721A90069572A /* AvatarView.swift */; };
 		90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF1F2AA5718F00E28133 /* trs_AppApp.swift */; };
 		90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF212AA5718F00E28133 /* ContentView.swift */; };
@@ -65,8 +65,8 @@
 
 /* Begin PBXFileReference section */
 		1D3021B42B0865D7006F8939 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
-		1DA2C95B2B0B446200809671 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
-		1DA2C95F2B0B460700809671 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		1DA2C95B2B0B446200809671 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		1DA2C95F2B0B460700809671 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		1DAD4DB22B0721A90069572A /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		90AEEF1C2AA5718F00E28133 /* trs App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "trs App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AEEF1F2AA5718F00E28133 /* trs_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trs_AppApp.swift; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 			isa = PBXGroup;
 			children = (
 				F36CA2842B0675100097620C /* SettingsView.swift */,
-				1DA2C95F2B0B460700809671 /* NotificationView.swift */,
-				1DA2C95B2B0B446200809671 /* AccountView.swift */,
+				1DA2C95B2B0B446200809671 /* AccountInfo.swift */,
+				1DA2C95F2B0B460700809671 /* NotificationsView.swift */,
 				1DAD4DB22B0721A90069572A /* AvatarView.swift */,
 			);
 			path = Settings;
@@ -402,7 +402,7 @@
 				1DAD4DB32B0721A90069572A /* AvatarView.swift in Sources */,
 				F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */,
 				F3C6EE2F2B0C4227002D32F7 /* RatingView.swift in Sources */,
-				1DA2C9602B0B460700809671 /* NotificationView.swift in Sources */,
+				1DA2C9602B0B460700809671 /* NotificationsView.swift in Sources */,
 				F36CA2912B06F6410097620C /* Color+Hex.swift in Sources */,
 				F3C6EE2A2B0AF389002D32F7 /* AuthenticationManager.swift in Sources */,
 				F36CA2812B06712B0097620C /* PortfolioView.swift in Sources */,
@@ -419,7 +419,7 @@
 				F3C6EE252B0AF32A002D32F7 /* SignInView.swift in Sources */,
 				F3C6EE312B0C59B6002D32F7 /* ScheduleEventManager.swift in Sources */,
 				F3C6EE272B0AF32A002D32F7 /* SignUpView.swift in Sources */,
-				1DA2C95C2B0B446200809671 /* AccountView.swift in Sources */,
+				1DA2C95C2B0B446200809671 /* AccountInfo.swift in Sources */,
 				90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

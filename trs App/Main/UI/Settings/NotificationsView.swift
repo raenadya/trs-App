@@ -1,5 +1,5 @@
 //
-//  NotificationView.swift
+//  NotificationsView.swift
 //  trs App
 //
 //  Created by Nicole Yu on 2023/11/20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NotificationView: View {
+struct NotificationsView: View {
     
     @AppStorage("notifyBeforeCompetition") private var notifyBeforeCompetition = true
     @AppStorage("notifyAfterCompeition") private var notifyAfterCompeition = true
@@ -23,8 +23,8 @@ struct NotificationView: View {
     }
 }
 
-struct NotificationView_Previews: PreviewProvider {
+struct NotificationsView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationView()
+        NotificationsView()
     }
 }

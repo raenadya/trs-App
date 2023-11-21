@@ -21,15 +21,8 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                
-                NavigationLink(destination: AccountView()) {
-                    Text("Account")
-                }
-                
-                NavigationLink(destination:NotificationView()){
-                    Text("Notifications")
-                }
-                
+                account
+                notifications
                 signOutButton
             }
             .navigationTitle("Settings")
@@ -41,6 +34,60 @@ struct SettingsView: View {
                         Label("Avatar", systemImage: "person.circle")
                     }
                 }
+            }
+        }
+    }
+    
+    var profileImage: some View {
+        Circle()
+            .foregroundColor(.blue)
+            .frame(width: 60)
+            .overlay {
+                VStack {
+                    if let email = authManager.email {
+                        let emailArray = Array(email)
+                        Text(emailArray[0].uppercased())
+                    } else {
+                        Text("?")
+                    }
+                }
+                .font(.system(size: 30.0))
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+            }
+    }
+    
+    var account: some View {
+        Section("Account") {
+            NavigationLink {
+                AccountInfo()
+            } label: {
+                HStack {
+                    profileImage
+                        .padding(.trailing, 10)
+                    VStack(alignment: .leading) {
+                        if let email = authManager.email {
+                            Text(email)
+                                .font(.body)
+                                .fontWeight(.bold)
+                            Text("Tap to view account information")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .fontWeight(.semibold)
+                        }
+                    }
+                }
+                .padding(.all, 10)
+            }
+        }
+    }
+    
+    var notifications: some View {
+        Section("Notifications") {
+            NavigationLink {
+                NotificationsView()
+            } label: {
+                Text("Notifications")
             }
         }
     }
