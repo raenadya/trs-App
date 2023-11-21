@@ -18,10 +18,19 @@ struct AccountView: View {
         NavigationStack{
             
             List{
-                TextField("What is your name?", text: $textEntered)
-                    .textFieldStyle(.roundedBorder)
                 
-                Text(textEntered == "" ? "" : "Hello, \(textEntered)!")
+                Section("Me")
+                {
+                    TextField("What is your Name?", text: $textEntered)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    Text(textEntered == "" ? "" : "Hello, \(textEntered)!")
+                }
+                
+                Section("Mail Information"){
+                    
+                }
+                
             }
             
             .navigationTitle("Account")
