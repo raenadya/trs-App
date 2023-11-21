@@ -20,14 +20,18 @@ struct ScheduleView: View {
                     List {
                         Section("Upcoming Events") {
                             ForEach(seManager.scheduledEvents) { event in
-                                VStack(alignment: .leading) {
-                                    Text(event.eventName)
-                                        .fontWeight(.bold)
-                                    if let description = event.description, !description.isEmpty, description != " " {
-                                        Text(description)
-                                            .lineLimit(2)
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
+                                NavigationLink {
+                                    EventInformationView(event: event)
+                                } label: {
+                                    VStack(alignment: .leading) {
+                                        Text(event.eventName)
+                                            .fontWeight(.bold)
+                                        if let description = event.description, !description.isEmpty, description != " " {
+                                            Text(description)
+                                                .lineLimit(2)
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                        }
                                     }
                                 }
                             }

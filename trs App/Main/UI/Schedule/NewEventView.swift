@@ -35,17 +35,16 @@ struct NewEventView: View {
             VStack {
                 List {
                     Section("Information *") {
-                        TextField("Event Name",
-                                  text: $eventName)
+                        TextField("Event Name", text: $eventName)
                         TextField("Organiser Name", text: $organiserName)
                     }
                     
                     Section("Dates *") {
-                        DatePicker(selection: $startDate, in: ...endDate, displayedComponents: .date) {
+                        DatePicker(selection: $startDate, in: ...endDate, displayedComponents: [.date, .hourAndMinute]) {
                             Text("Start Date")
                         }
                         
-                        DatePicker(selection: $endDate, in: startDate..., displayedComponents: .date) {
+                        DatePicker(selection: $endDate, in: startDate..., displayedComponents: [.date, .hourAndMinute]) {
                             Text("End Date")
                         }
                     }
