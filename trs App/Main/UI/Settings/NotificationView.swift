@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct NotificationView: View {
+    
+    @State private var NotificationBeforeCompetition = true
+    @State private var NotificationAfterCompeition = true
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        NavigationStack{
+        
+            List{
+                
+                Section(""){
+                    Toggle("Notification Before Competition", isOn: $NotificationBeforeCompetition)
+                    
+                    Toggle("Notification After Competition", isOn: $NotificationAfterCompeition)
+                }
+                
+            }
+            
+            
+            .navigationTitle("Notification")
+            
+        }
     }
 }
 

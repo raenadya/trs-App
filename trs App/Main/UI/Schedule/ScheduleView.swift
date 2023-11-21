@@ -11,16 +11,14 @@ struct ScheduleView: View {
     
     
     @State private var addSheet = false
-    @State private var scheduledItems = ["Schedule your upcoming activities here!"]
     
     var body: some View {
         NavigationStack{
             List {
-                ForEach(scheduledItems, id: \.self) { item in
-                    Text(item)
+                Section("Schedule your upcoming activities/compeitions here!")
+                {
+                    //code
                 }
-                .onDelete(perform: deleteItems)
-                Text("")
             }
             .navigationTitle("Schedule")
             .toolbar{
@@ -31,17 +29,21 @@ struct ScheduleView: View {
                         Image(systemName:"plus")
                     }
                 }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
             }
-        }
+                
+            }
         .sheet(isPresented: $addSheet){
             AddSheetView()
         }
+        }
     }
     
-    func deleteItems (at offsets: IndexSet) {
-        scheduledItems.remove(atOffsets:offsets)
-    }
-}
+    
+
 
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
