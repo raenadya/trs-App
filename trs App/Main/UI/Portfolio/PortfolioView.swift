@@ -15,6 +15,8 @@ struct PortfolioView: View {
     @ObservedObject var filterManager: FilterManager = .shared
     @ObservedObject var credentialsManager: CredentialsManager = .shared
     
+    @State var coinNumber = 0
+    
     var body: some View {
         NavigationStack {
             list
@@ -41,6 +43,18 @@ struct PortfolioView: View {
                         } label: {
                             Label("Add credential", systemImage: "plus")
                         }
+                    }
+                    
+                    ToolbarItem(placement:.navigationBarLeading){
+                        
+                        Text("\(coinNumber) coins")
+                            .padding()
+                            .bold()
+                            .underline()
+                            .foregroundColor(.purple)
+                        
+                        CoinSystemView()
+                            
                     }
                 }
         }
