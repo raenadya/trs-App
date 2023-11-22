@@ -194,17 +194,3 @@ struct AvatarView: View {
             AvatarView()
         }
     }
-
-//cap (10c),cat ears (30c),chef (20c),crown (20c)
-//devil horns (30c),flower crown (10c)
-//graduation hat (20c)
-//headphones (40c)
-//mexican hat (40c)
-//party hat (10c)
-//plant (30c)
-//rabbit ears (30c)
-//santa hat (50c)
-//tiara (50c)
-//top hat (40c)
-//viking helmet (20c)
-//witch hat (20c)
