@@ -10,10 +10,12 @@ import SwiftUI
 struct CoinSystemView: View {
     
     @State private var showCoinAlert = false
+    @State private var showDeleteAlert = false
     @State private var coinNumber = 0
     
     var body: some View {
-        NavigationStack {
+        VStack{
+            NavigationStack {
                 
                 Button("after credential added") {
                     showCoinAlert = true
@@ -26,6 +28,23 @@ struct CoinSystemView: View {
                         dismissButton: .default(Text("OK"))
                     )
                     
+                }
+                
+                Button("after credential delete"){
+                    showDeleteAlert = true
+                    coinNumber -= 5
+                }
+                .alert(isPresented: $showDeleteAlert){
+                    Alert(
+                    title: Text("Delete"),
+                    message: Text("You lose 5 coins"),
+                    dismissButton:
+                            .default(Text("OK"))
+                    )
+                }
+                
+            Text("\(coinNumber) coins")
+                .padding()
                 }
             }
         }
