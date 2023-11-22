@@ -3,39 +3,40 @@ import SwiftUI
 struct AvatarView: View {
     
     @State var showingAvatarView = false
-    @State var avatarImage: Image = Image("defaultAvatar")
+    @State private var showingImagePicker = false
+    @State private var avatarImage: Image = Image("profile circle")
     @State private var profileImage: UIImage? = nil
     @State private var showBuyAlert = false
     @State private var hasClickedOK = false
     
-    @State private var clickedStatus: [Bool] = Array(repeating: false, count: 21) // Track button click status
+    @State private var clickedStatus: [Bool] = Array(repeating: false, count: 21)
     
     var body: some View {
         
         VStack {
             ZStack {
-                
                 avatarImage
                     .resizable()
                     .scaledToFit()
                     .frame(width: 110, height: 110)
-                    .position(x: 130, y: 70)
-                
+                    .clipShape(Circle())
+                    .onTapGesture {
+                        showingImagePicker.toggle()
+                    }
+
                 if let profileImage = profileImage {
                     Image(uiImage: profileImage)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
-                } else {
-                    Image(systemName: "person.circle")
-                        .resizable()
-                        .foregroundColor(.purple)
-                        .scaledToFit()
-                        .fontWeight(.light)
-                        .frame(width: 150, height: 150)
-                    
+                        .clipShape(Circle())
                 }
             }
+        }
+        .scaledToFit()
+        .frame(height: 600)
+        .frame(width: 400)
+        .imagePicker(isPresented: $showingImagePicker, image: $profileImage)
             
             HStack (spacing: 70) {
                 
@@ -499,19 +500,62 @@ struct AvatarView: View {
                 }
             }
         }
-        .scaledToFit()
-        .frame(height:600)
-        .frame(width:400)
         
     }
     
     
+
+import SwiftUI
+
+extension View {
+    func imagePicker(isPresented: Binding<Bool>, image: Binding<UIImage?>) -> some View {
+        sheet(isPresented: isPresented) {
+            ImagePickerView(isPresented: isPresented, selectedImage: image)
+        }
+    }
 }
 
+struct ImagePickerView: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
+    @Binding var selectedImage: UIImage?
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIViewController {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .clear
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<ImagePickerView>) {
+        if isPresented {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = context.coordinator
+            uiViewController.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let parent: ImagePickerView
+
+        init(parent: ImagePickerView) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let uiImage = info[.editedImage] as? UIImage {
+                parent.selectedImage = uiImage
+            }
+
+            parent.isPresented = false
+        }
+    }
+}
 
 struct AvatarView_Previews: PreviewProvider {
     static var previews: some View {
         AvatarView()
     }
 }
-

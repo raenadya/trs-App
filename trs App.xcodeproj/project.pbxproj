@@ -12,7 +12,6 @@
 		1DA2C9602B0B460700809671 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA2C95F2B0B460700809671 /* NotificationsView.swift */; };
 		1DAD4DB32B0721A90069572A /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD4DB22B0721A90069572A /* AvatarView.swift */; };
 		904198CE2B0DC306003652F9 /* UIImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904198CD2B0DC306003652F9 /* UIImagePickerController.swift */; };
-		904198D02B0DC3F5003652F9 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904198CF2B0DC3F5003652F9 /* ImagePickerView.swift */; };
 		90AEEF202AA5718F00E28133 /* trs_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF1F2AA5718F00E28133 /* trs_AppApp.swift */; };
 		90AEEF222AA5718F00E28133 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEEF212AA5718F00E28133 /* ContentView.swift */; };
 		90AEEF242AA5719000E28133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AEEF232AA5719000E28133 /* Assets.xcassets */; };
@@ -51,7 +50,6 @@
 		1DA2C95F2B0B460700809671 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		1DAD4DB22B0721A90069572A /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		904198CD2B0DC306003652F9 /* UIImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImagePickerController.swift; sourceTree = "<group>"; };
-		904198CF2B0DC3F5003652F9 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		90AEEF1C2AA5718F00E28133 /* trs App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "trs App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AEEF1F2AA5718F00E28133 /* trs_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trs_AppApp.swift; sourceTree = "<group>"; };
 		90AEEF212AA5718F00E28133 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 				1DA2C95B2B0B446200809671 /* AccountInfo.swift */,
 				1DA2C95F2B0B460700809671 /* NotificationsView.swift */,
 				1DAD4DB22B0721A90069572A /* AvatarView.swift */,
-				904198CF2B0DC3F5003652F9 /* ImagePickerView.swift */,
 				904198CD2B0DC306003652F9 /* UIImagePickerController.swift */,
 			);
 			path = Settings;
@@ -368,7 +365,6 @@
 				F3C6EE252B0AF32A002D32F7 /* SignInView.swift in Sources */,
 				F3C6EE312B0C59B6002D32F7 /* ScheduleEventManager.swift in Sources */,
 				F3C6EE272B0AF32A002D32F7 /* SignUpView.swift in Sources */,
-				904198D02B0DC3F5003652F9 /* ImagePickerView.swift in Sources */,
 				F3A87A412B0CF06C0001FA7C /* NotificationManager.swift in Sources */,
 				904198CE2B0DC306003652F9 /* UIImagePickerController.swift in Sources */,
 				1DA2C95C2B0B446200809671 /* AccountInfo.swift in Sources */,
