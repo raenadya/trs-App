@@ -152,6 +152,8 @@ struct AccountInfo: View {
     }
 }
 
-#Preview {
-    AccountInfo()
+struct AccountInfo_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountInfo()
+    }
 }
