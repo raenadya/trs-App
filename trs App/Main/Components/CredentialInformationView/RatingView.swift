@@ -29,7 +29,7 @@ struct RatingView: View {
                     }
                 } label: {
                     image(for: number)
-                        .foregroundStyle(number > rating ? offColor : onColor)
+                        .foregroundColor(number > rating ? offColor : onColor)
                 }
             }
         }
@@ -43,11 +43,10 @@ struct RatingView: View {
             return offImage ?? onImage
         }
     }
-    
-    struct RatingView_Previews: PreviewProvider {
-        static var previews: some View {
-            RatingView(rating: .constant(4))
-        }
+}
+
+struct RatingView_Previews: PreviewProvider {
+    static var previews: some View {
+        RatingView(rating: .constant(4))
     }
-    
 }
