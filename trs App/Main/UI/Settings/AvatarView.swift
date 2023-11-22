@@ -4,7 +4,7 @@ struct AvatarView: View {
     
     @State var showingAvatarView = false
     @State private var showingImagePicker = false
-    @State private var avatarImage: Image = Image("profile circle")
+    @State private var avatarImage: Image = Image("bow tie (10c)")
     @State private var profileImage: UIImage? = nil
     @State private var showBuyAlert = false
     @State private var hasClickedOK = false
@@ -18,12 +18,12 @@ struct AvatarView: View {
                 avatarImage
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 250, height: 250)
+                    .frame(width: 110, height: 110)
                     .clipShape(Circle())
                     .onTapGesture {
                         showingImagePicker.toggle()
                     }
-                
+
                 if let profileImage = profileImage {
                     Image(uiImage: profileImage)
                         .resizable()
@@ -32,152 +32,159 @@ struct AvatarView: View {
                         .clipShape(Circle())
                 }
             }
-            .imagePicker(isPresented: $showingImagePicker, image: $profileImage)
+        }
+        .scaledToFit()
+        .frame(height: 600)
+        .frame(width: 400)
+        .imagePicker(isPresented: $showingImagePicker, image: $profileImage)
+
             
-            // cancel button
-            HStack(spacing:40){
-                VStack(spacing:10){
-                Button {
-                    self.avatarImage = Image("")
-                } label: {
-                    Image("no avatar")
-                        .resizable()
-                        .scaledToFit()
-                }
+            HStack (spacing: 70) {
                 
-                // party hat (10c)
-                
-                
-                Button {
-                    if !hasClickedOK {
-                        showBuyAlert = true
-                    } else {
-                        self.avatarImage = Image("party hat (10c)")
+                VStack{
+                    
+                    // cancel button
+                    
+                    Button {
+                        self.avatarImage = Image("")
+                    } label: {
+                        Image("no avatar")
+                            .resizable()
+                            .scaledToFit()
                     }
-                } label: {
-                    Image("party hat (10c)")
-                        .resizable()
-                        .scaledToFit()
-                }
-                .alert(isPresented: $showBuyAlert) {
-                    Alert(
-                        title: Text("Do you want to buy this accessory?"),
-                        message: Text("This accessory costs 10 coins."),
-                        primaryButton: .default(Text("OK")) {
-                            hasClickedOK = true
-                        },
-                        secondaryButton: .cancel {
-                            showBuyAlert = false
+                    
+                    // party hat (10c)
+                    
+                    
+                    Button {
+                        if !hasClickedOK {
+                            showBuyAlert = true
+                        } else {
+                            self.avatarImage = Image("party hat (10c)")
                         }
-                    )
-                }
-                
-                // graduation hat (20c)
-                
-                Button {
-                    if !hasClickedOK {
-                        showBuyAlert = true
-                    } else {
-                        self.avatarImage = Image("graduation hat (20c)")
+                    } label: {
+                        Image("party hat (10c)")
+                            .resizable()
+                            .scaledToFit()
                     }
-                } label: {
-                    Image("graduation hat (20c)")
-                        .resizable()
-                        .scaledToFit()
-                }
-                .alert(isPresented: $showBuyAlert) {
-                    Alert(
-                        title: Text("Do you want to buy this accessory?"),
-                        message: Text("This accessory costs 20 coins."),
-                        primaryButton: .default(Text("OK")) {
-                            hasClickedOK = true
-                        },
-                        secondaryButton: .cancel {
-                            showBuyAlert = false
-                        }
-                    )
-                }
-                
-                // cat ears (30c)
-                
-                Button {
-                    if !hasClickedOK {
-                        showBuyAlert = true
-                    } else {
-                        self.avatarImage = Image("cat ears (30c)")
+                    .alert(isPresented: $showBuyAlert) {
+                        Alert(
+                            title: Text("Do you want to buy this accessory?"),
+                            message: Text("This accessory costs 10 coins."),
+                            primaryButton: .default(Text("OK")) {
+                                hasClickedOK = true
+                            },
+                            secondaryButton: .cancel {
+                                showBuyAlert = false
+                            }
+                        )
                     }
-                } label: {
-                    Image("cat ears (30c)")
-                        .resizable()
-                        .scaledToFit()
-                }
-                .alert(isPresented: $showBuyAlert) {
-                    Alert(
-                        title: Text("Do you want to buy this accessory?"),
-                        message: Text("This accessory costs 30 coins."),
-                        primaryButton: .default(Text("OK")) {
-                            hasClickedOK = true
-                        },
-                        secondaryButton: .cancel {
-                            showBuyAlert = false
+                    
+                    // graduation hat (20c)
+                    
+                    Button {
+                        if !hasClickedOK {
+                            showBuyAlert = true
+                        } else {
+                            self.avatarImage = Image("graduation hat (20c)")
                         }
-                    )
-                }
-                
-                // headphones (40c)
-                
-                Button {
-                    if !hasClickedOK {
-                        showBuyAlert = true
-                    } else {
-                        self.avatarImage = Image("headphones (40c)")
+                    } label: {
+                        Image("graduation hat (20c)")
+                            .resizable()
+                            .scaledToFit()
                     }
-                } label: {
-                    Image("headphones (40c)")
-                        .resizable()
-                        .scaledToFit()
-                }
-                .alert(isPresented: $showBuyAlert) {
-                    Alert(
-                        title: Text("Do you want to buy this accessory?"),
-                        message: Text("This accessory costs 40 coins."),
-                        primaryButton: .default(Text("OK")) {
-                            hasClickedOK = true
-                        },
-                        secondaryButton: .cancel {
-                            showBuyAlert = false
-                        }
-                    )
-                }
-                
-                // santa hat (50c)
-                
-                Button {
-                    if !hasClickedOK {
-                        showBuyAlert = true
-                    } else {
-                        self.avatarImage = Image("santa hat (50c)")
+                    .alert(isPresented: $showBuyAlert) {
+                        Alert(
+                            title: Text("Do you want to buy this accessory?"),
+                            message: Text("This accessory costs 20 coins."),
+                            primaryButton: .default(Text("OK")) {
+                                hasClickedOK = true
+                            },
+                            secondaryButton: .cancel {
+                                showBuyAlert = false
+                            }
+                        )
                     }
-                } label: {
-                    Image("santa hat (50c)")
-                        .resizable()
-                        .scaledToFit()
-                }
-                .alert(isPresented: $showBuyAlert) {
-                    Alert(
-                        title: Text("Do you want to buy this accessory?"),
-                        message: Text("This accessory costs 50 coins."),
-                        primaryButton: .default(Text("OK")) {
-                            hasClickedOK = true
-                        },
-                        secondaryButton: .cancel {
-                            showBuyAlert = false
+                    
+                    // cat ears (30c)
+                    
+                    Button {
+                        if !hasClickedOK {
+                            showBuyAlert = true
+                        } else {
+                            self.avatarImage = Image("cat ears (30c)")
                         }
-                    )
+                    } label: {
+                        Image("cat ears (30c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .alert(isPresented: $showBuyAlert) {
+                        Alert(
+                            title: Text("Do you want to buy this accessory?"),
+                            message: Text("This accessory costs 30 coins."),
+                            primaryButton: .default(Text("OK")) {
+                                hasClickedOK = true
+                            },
+                            secondaryButton: .cancel {
+                                showBuyAlert = false
+                            }
+                        )
+                    }
+                    
+                    // headphones (40c)
+                    
+                    Button {
+                        if !hasClickedOK {
+                            showBuyAlert = true
+                        } else {
+                            self.avatarImage = Image("headphones (40c)")
+                        }
+                    } label: {
+                        Image("headphones (40c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .alert(isPresented: $showBuyAlert) {
+                        Alert(
+                            title: Text("Do you want to buy this accessory?"),
+                            message: Text("This accessory costs 40 coins."),
+                            primaryButton: .default(Text("OK")) {
+                                hasClickedOK = true
+                            },
+                            secondaryButton: .cancel {
+                                showBuyAlert = false
+                            }
+                        )
+                    }
+                    
+                    // santa hat (50c)
+                    
+                    Button {
+                        if !hasClickedOK {
+                            showBuyAlert = true
+                        } else {
+                            self.avatarImage = Image("santa hat (50c)")
+                        }
+                    } label: {
+                        Image("santa hat (50c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .alert(isPresented: $showBuyAlert) {
+                        Alert(
+                            title: Text("Do you want to buy this accessory?"),
+                            message: Text("This accessory costs 50 coins."),
+                            primaryButton: .default(Text("OK")) {
+                                hasClickedOK = true
+                            },
+                            secondaryButton: .cancel {
+                                showBuyAlert = false
+                            }
+                        )
+                    }
                 }
-            }
-                
-                VStack(spacing:10){
+                VStack{
                     // cap (10c)
                     
                     Button {
@@ -334,7 +341,7 @@ struct AvatarView: View {
                         )
                     }
                 }
-                VStack(spacing:10){
+                VStack{
                     // flower crown (10c)
                     
                     Button {
@@ -490,14 +497,12 @@ struct AvatarView: View {
                             }
                         )
                     }
+                    
                 }
             }
-            .frame(width:400)
-            .frame(height:400)
         }
+        
     }
-            
-        }
     
     
 
@@ -517,7 +522,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIViewController {
         let controller = UIViewController()
-        controller.view.backgroundColor = .clear
+        controller.view.backgroundColor = .purple // Set the background color to purple
         return controller
     }
 
@@ -549,6 +554,9 @@ struct ImagePickerView: UIViewControllerRepresentable {
         }
     }
 }
+
+
+
 
 struct AvatarView_Previews: PreviewProvider {
     static var previews: some View {
