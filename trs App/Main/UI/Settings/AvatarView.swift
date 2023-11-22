@@ -5,6 +5,9 @@ struct AvatarView: View {
     @State var showingAvatarView = false
     @State var avatarImage: Image = Image("defaultAvatar")
     @State private var profileImage: UIImage? = nil
+    @State private var showBuyAlert = false
+    
+    @State private var clickedStatus: [Bool] = Array(repeating: false, count: 21) // Track button click status
     
     var body: some View {
         
@@ -32,168 +35,189 @@ struct AvatarView: View {
                     
                 }
             }
+            
+            HStack (spacing: 70) {
                 
-                HStack (spacing:40) {
+                VStack{
                     
-                    VStack{
-                        
-                        Button {
-                            self.avatarImage = Image("")
-                        } label: {
-                            Image("no avatar")
-                                .resizable()
-                                .scaledToFit()
+                    Button {
+                        if !clickedStatus[0] {
+                            showBuyAlert = true
+                            clickedStatus[0] = true
+                        } else {
+                            self.avatarImage = Image("no avatar")
                         }
-                        
-                        Button {
+                    } label: {
+                        Image("no avatar")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .alert(isPresented: $showBuyAlert) {
+                        Alert(
+                            title: Text("Do you want to buy this accessory?"),
+                            message: Text("This accessory costs 10 coins."),
+                            primaryButton: .default(Text("OK"), action: {
+                                showBuyAlert = false // Reset showBuyAlert to false
+                                clickedStatus[0] = true // Set clickedStatus to true
+                                self.avatarImage = Image("no avatar") // Set avatarImage to the desired image
+                            }),
+                            secondaryButton: .cancel {
+                                showBuyAlert = false // Reset showBuyAlert to false
+                            }
+                        )
+                    }
+                            
+                    Button {
+                        if !clickedStatus[1] {
+                            print("Would you like to buy this avatar? (Cost: 10c)")
+                            clickedStatus[1] = true
+                        } else {
                             self.avatarImage = Image("bow tie (10c)")
-                        } label: {
-                            Image("bow tie (10c)")
-                                .resizable()
-                                .scaledToFit()
                         }
-                        
-                        Button{
-                            self.avatarImage = Image("cap (10c)")
-                        }label:{
-                            Image("cap (10c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("cat ears (30c)")
-                        }label:{
-                            Image("cat ears (30c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("chef (20c)")
-                        }label:{
-                            Image("chef (20c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("crown (20c)")
-                        }label:{
-                            Image("crown (20c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("devil horns (30c)")
-                        }label:{
-                            Image("devil horns (30c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
+                    } label: {
+                        Image("bow tie (10c)")
+                            .resizable()
+                            .scaledToFit()
                     }
-                    VStack{
-                        Button{
-                            self.avatarImage = Image("flower crown (10c)")
-                        }label:{
-                            Image("flower crown (10c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("graduation hat (20c)")
-                        }label:{
-                            Image("graduation hat (20c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("headphones (40c)")
-                        }label:{
-                            Image("headphones (40c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("mexican hat (40c)")
-                        }label:{
-                            Image("mexican hat (40c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("party hat (10c)")
-                        }label:{
-                            Image("party hat (10c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("plant (30c)")
-                        }label:{
-                            Image("plant (30c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
+                    
+                    Button{
+                        self.avatarImage = Image("cap (10c)")
+                    }label:{
+                        Image("cap (10c)")
+                            .resizable()
+                            .scaledToFit()
                     }
-                    VStack{
-                        Button{
-                            self.avatarImage = Image("rabbit ears (30c)")
-                        }label:{
-                            Image("rabbit ears (30c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("santa hat (50c)")
-                        }label:{
-                            Image("santa hat (50c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("tiara (50c)")
-                        }label:{
-                            Image("tiara (50c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("top hat (40c)")
-                        }label:{
-                            Image("top hat (40c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("viking helmet (20c)")
-                        }label:{
-                            Image("viking helmet (20c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        Button{
-                            self.avatarImage = Image("witch hat (20c)")
-                        }label:{
-                            Image("witch hat (20c)")
-                                .resizable()
-                                .scaledToFit()
-                        }
+                    Button{
+                        self.avatarImage = Image("cat ears (30c)")
+                    }label:{
+                        Image("cat ears (30c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("chef (20c)")
+                    }label:{
+                        Image("chef (20c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("crown (20c)")
+                    }label:{
+                        Image("crown (20c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("devil horns (30c)")
+                    }label:{
+                        Image("devil horns (30c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+                VStack{
+                    Button{
+                        self.avatarImage = Image("flower crown (10c)")
+                    }label:{
+                        Image("flower crown (10c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("graduation hat (20c)")
+                    }label:{
+                        Image("graduation hat (20c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("headphones (40c)")
+                    }label:{
+                        Image("headphones (40c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("mexican hat (40c)")
+                    }label:{
+                        Image("mexican hat (40c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("party hat (10c)")
+                    }label:{
+                        Image("party hat (10c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("plant (30c)")
+                    }label:{
+                        Image("plant (30c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+                VStack{
+                    Button{
+                        self.avatarImage = Image("rabbit ears (30c)")
+                    }label:{
+                        Image("rabbit ears (30c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("santa hat (50c)")
+                    }label:{
+                        Image("santa hat (50c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("tiara (50c)")
+                    }label:{
+                        Image("tiara (50c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("top hat (40c)")
+                    }label:{
+                        Image("top hat (40c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("viking helmet (20c)")
+                    }label:{
+                        Image("viking helmet (20c)")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button{
+                        self.avatarImage = Image("witch hat (20c)")
+                    }label:{
+                        Image("witch hat (20c)")
+                            .resizable()
+                            .scaledToFit()
                     }
                 }
             }
-            
-            .scaledToFit()
-            .frame(height:600)
-            .frame(width:400)
-            
         }
+        .scaledToFit()
+        .frame(height:600)
+        .frame(width:400)
         
     }
-
     
-    struct AvatarView_Previews: PreviewProvider {
-        static var previews: some View {
-            AvatarView()
-        }
+    
+}
+
+
+struct AvatarView_Previews: PreviewProvider {
+    static var previews: some View {
+        AvatarView()
     }
-
-// hi
-
+}
