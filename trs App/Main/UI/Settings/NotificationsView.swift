@@ -20,6 +20,8 @@ struct NotificationsView: View {
             Section {
                 Toggle("Notify Before Event", isOn: $notifyBeforeEvent)
                 Toggle("Notify After Event", isOn: $notifyAfterEvent)
+            } footer: {
+                Text("A notification will be sent 30 minutes before your event starts, and as soon and your event ends.")
             }
         }
         .navigationTitle("Notifications")

@@ -42,7 +42,7 @@ struct NewEventView: View {
                     }
                     
                     Section("Dates *") {
-                        DatePicker(selection: $startDate, in: Date(timeIntervalSince1970: Date().timeIntervalSince1970 - 10)...endDate, displayedComponents: [.date, .hourAndMinute]) {
+                        DatePicker(selection: $startDate, in: ...endDate, displayedComponents: [.date, .hourAndMinute]) {
                             Text("Start Date")
                         }
                         
@@ -73,15 +73,6 @@ struct NewEventView: View {
                                              startDate: startDate,
                                              endDate: endDate)
                         )
-                        notificationManager.addNotifications(
-                            uuid: eventUUID,
-                            startTitle: "\(eventName)",
-                            startBody: "The event \(eventName) organised by \(organiserName) starts in 30 minutes.",
-                            endTitle: "\(eventName)",
-                            endBody: "Add any achievements or credentials you've attained during this event into your portfolio.",
-                            startDate: startDate,
-                            endDate: endDate
-                        )
                         dismiss.callAsFunction()
                     } label: {
                         Text("Add")
@@ -96,6 +87,6 @@ struct NewEventView: View {
 
 struct NewEventView_Previews: PreviewProvider {
     static var previews: some View {
-        NewEventView ()
+        NewEventView()
     }
 }

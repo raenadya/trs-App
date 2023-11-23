@@ -36,6 +36,15 @@ class ScheduleEventManager: ObservableObject {
     }
     
     func addToScheduledEvents(withValue event: Event) {
+        notificationManager.addNotifications(
+            uuid: event.id,
+            startTitle: "\(event.eventName)",
+            startBody: "The event \(event.eventName) organised by \(event.organiserName) starts in 30 minutes.",
+            endTitle: "\(event.eventName)",
+            endBody: "Add any achievements or credentials you've attained during this event into your portfolio.",
+            startDate: event.startDate,
+            endDate: event.endDate
+        )
         internalScheduledEvents.insert(event, at: 0)
         updatePublishedVariables()
     }
