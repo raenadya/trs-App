@@ -9,6 +9,12 @@ import SwiftUI
 
 struct PortfolioView: View {
     
+    enum PortfolioListSortType: String, CaseIterable {
+        case noSort = "None"
+        case category = "Category"
+        case importance = "Importance"
+    }
+    
     @State var showingAddCredentialView = false
     @State var showingTipsView = false
     
@@ -16,6 +22,43 @@ struct PortfolioView: View {
     @ObservedObject var credentialsManager: CredentialsManager = .shared
     
     @State var coinNumber = 0
+    
+    @State var sortSelection: PortfolioListSortType = .noSort
+    
+    var showSortPicker: Bool {
+        switch filterManager.currentSelection {
+        case .all:
+            if sortedCredentials.count > 0 { 
+                return true
+            } else {
+                return false
+            }
+        case .experiences:
+            if experiences.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        case .competitions:
+            if competitions.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        case .achievementsAndHonours:
+            if achievementsAndHonours.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        case .projects:
+            if projects.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -61,85 +104,137 @@ struct PortfolioView: View {
             TipsView(currentSelection: filterManager.currentSelection)
                 .presentationDetents([.medium])
         }
+        .onChange(of: filterManager.currentSelection) { newValue in
+            if newValue != .all && sortSelection == .category {
+                sortSelection = .noSort
+            }
+        }
     }
     
     var list: some View {
         List {
-            switch filterManager.currentSelection {
-            case .all:
-                ForEach(credentials, id: \.id) { credential in
-                    switch credential {
-                    case .achievementAndHonour(let achievementAndHonour):
-                        NavigationLink {
-                            CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
-                        } label: {
-                            listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
-                        }
-                    case .competition(let competition):
-                        NavigationLink {
-                            CredentialInformationView(credential: Credential.competition(competition))
-                        } label: {
-                            listRowPreview(title: competition.title, description: competition.description)
-                        }
-                    case .experience(let experience):
-                        NavigationLink {
-                            CredentialInformationView(credential: Credential.experience(experience))
-                        } label: {
-                            listRowPreview(title: experience.title, description: experience.description)
-                        }
-                    case .project(let project):
-                        NavigationLink {
-                            CredentialInformationView(credential: Credential.project(project))
-                        } label: {
-                            listRowPreview(title: project.title, description: project.description)
-                        }
-                    }
+            Section {
+                switch filterManager.currentSelection {
+                case .all:
+                    allCategories
+                case .experiences:
+                    experiencesCategory
+                case .competitions:
+                    competitionsCategory
+                case .achievementsAndHonours:
+                    achievementsAndHonoursCategory
+                case .projects:
+                    projectsCategory
                 }
-            case .experiences:
-                ForEach(credentialsManager.experiences, id: \.id) { experience in
-                    NavigationLink {
-                        CredentialInformationView(credential: Credential.experience(experience))
-                    } label: {
-                        listRowPreview(title: experience.title, description: experience.description)
-                    }
-                }
-                .onDelete { indexOffset in
-                    credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
-                }
-            case .competitions:
-                ForEach(credentialsManager.competitions, id: \.id) { competition in
-                    NavigationLink {
-                        CredentialInformationView(credential: Credential.competition(competition))
-                    } label: {
-                        listRowPreview(title: competition.title, description: competition.achievementLevel)
-                    }
-                }
-                .onDelete { indexOffset in
-                    credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
-                }
-            case .achievementsAndHonours:
-                ForEach(credentialsManager.achievementAndHonours, id: \.id) { achievementAndHonour in
-                    NavigationLink {
-                        CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
-                    } label: {
-                        listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.achievementLevel)
-                    }
-                }
-                .onDelete { indexOffset in
-                    credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
-                }
-            case .projects:
-                ForEach(credentialsManager.projects, id: \.id) { project in
-                    NavigationLink {
-                        CredentialInformationView(credential: Credential.project(project))
-                    } label: {
-                        listRowPreview(title: project.title, description: project.description)
-                    }
-                }
-                .onDelete { indexOffset in
-                    credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
+            } header: {
+                if showSortPicker {
+                    sortPicker
                 }
             }
+        }
+    }
+    
+    var sortPicker: some View {
+        HStack {
+            Spacer()
+            Picker("Filter", selection: $sortSelection) {
+                ForEach(PortfolioListSortType.allCases, id: \.rawValue) { filter in
+                    if filter != .category {
+                        Text(filter.rawValue)
+                            .tag(filter)
+                        if filter == .noSort {
+                            Divider()
+                        }
+                    } else if filter == .category && filterManager.currentSelection == .all {
+                        Text(filter.rawValue)
+                            .tag(filter)
+                    }
+                }
+            }
+        }
+        .textCase(nil)
+    }
+    
+    var allCategories: some View {
+        ForEach(sortedCredentials, id: \.id) { credential in
+            switch credential {
+            case .achievementAndHonour(let achievementAndHonour):
+                NavigationLink {
+                    CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
+                } label: {
+                    listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                }
+            case .competition(let competition):
+                NavigationLink {
+                    CredentialInformationView(credential: Credential.competition(competition))
+                } label: {
+                    listRowPreview(title: competition.title, description: competition.description)
+                }
+            case .experience(let experience):
+                NavigationLink {
+                    CredentialInformationView(credential: Credential.experience(experience))
+                } label: {
+                    listRowPreview(title: experience.title, description: experience.description)
+                }
+            case .project(let project):
+                NavigationLink {
+                    CredentialInformationView(credential: Credential.project(project))
+                } label: {
+                    listRowPreview(title: project.title, description: project.description)
+                }
+            }
+        }
+    }
+    
+    var experiencesCategory: some View {
+        ForEach(experiences, id: \.id) { experience in
+            NavigationLink {
+                CredentialInformationView(credential: Credential.experience(experience))
+            } label: {
+                listRowPreview(title: experience.title, description: experience.description)
+            }
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
+        }
+    }
+    
+    var competitionsCategory: some View {
+        ForEach(competitions, id: \.id) { competition in
+            NavigationLink {
+                CredentialInformationView(credential: Credential.competition(competition))
+            } label: {
+                listRowPreview(title: competition.title, description: competition.description)
+            }
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
+        }
+    }
+    
+    var achievementsAndHonoursCategory: some View {
+        ForEach(achievementsAndHonours, id: \.id) { achievementAndHonour in
+            NavigationLink {
+                CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
+            } label: {
+                listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+            }
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
+        }
+    }
+    
+    var projectsCategory: some View {
+        ForEach(projects, id: \.id) { project in
+            NavigationLink {
+                CredentialInformationView(credential: Credential.project(project))
+            } label: {
+                listRowPreview(title: project.title, description: project.description)
+            }
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
         }
     }
     
@@ -150,6 +245,53 @@ struct PortfolioView: View {
         credentialsManager.projects.map { Credential.project($0) }
         credentials.sort(by: { $0.dateAdded > $1.dateAdded })
         return credentials
+    }
+    
+    var sortedCredentials: [Credential] {
+        switch sortSelection {
+        case .noSort:
+            return credentials
+        case .category:
+            return credentials.sorted { $0.type.rawValue < $1.type.rawValue }
+        case .importance:
+            return credentials.sorted { $0.importance > $1.importance }
+        }
+    }
+    
+    var experiences: [Experience] {
+        switch sortSelection {
+        case .noSort, .category:
+            return credentialsManager.experiences
+        case .importance:
+            return credentialsManager.experiences.sorted { $0.importance > $1.importance }
+        }
+    }
+    
+    var competitions: [Competition] {
+        switch sortSelection {
+        case .noSort, .category:
+            return credentialsManager.competitions
+        case .importance:
+            return credentialsManager.competitions.sorted { $0.importance > $1.importance }
+        }
+    }
+    
+    var achievementsAndHonours: [AchievementAndHonour] {
+        switch sortSelection {
+        case .noSort, .category:
+            return credentialsManager.achievementAndHonours
+        case .importance:
+            return credentialsManager.achievementAndHonours.sorted { $0.importance > $1.importance }
+        }
+    }
+    
+    var projects: [Project] {
+        switch sortSelection {
+        case .noSort, .category:
+            return credentialsManager.projects
+        case .importance:
+            return credentialsManager.projects.sorted { $0.importance > $1.importance }
+        }
     }
     
     @ViewBuilder
