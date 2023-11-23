@@ -355,11 +355,13 @@ struct PortfolioView: View {
                         timeInfoRectangle(experience.dateAdded)
                         categoryInfoRectangle("Experience")
                         importanceInfoRectangle(experience.importance)
+                        tagInfoRectangle(experience.tag.rawValue)
                         
                     case .competition(let competition):
                         timeInfoRectangle(competition.dateAdded)
                         categoryInfoRectangle("Competition")
                         importanceInfoRectangle(competition.importance)
+                        tagInfoRectangle(competition.tag.rawValue)
                         
                     case .achievementAndHonour(let achievementAndHonour):
                         timeInfoRectangle(achievementAndHonour.dateAdded)
@@ -417,6 +419,20 @@ struct PortfolioView: View {
         .fontWeight(.bold)
         .padding(5)
         .background(.yellow.opacity(0.5))
+        .cornerRadius(8)
+    }
+    
+    @ViewBuilder
+    func tagInfoRectangle(_ tagRawValue: String) -> some View {
+        HStack {
+            Image(systemName: "tag.fill")
+            Text("\(tagRawValue)")
+                .padding(.leading, -5)
+        }
+        .font(.caption2)
+        .fontWeight(.bold)
+        .padding(5)
+        .background(.red.opacity(0.5))
         .cornerRadius(8)
     }
 }
