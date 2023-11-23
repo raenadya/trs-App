@@ -10,8 +10,10 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var authManager: AuthenticationManager = .shared
+    @ObservedObject var coinsManager: CoinsManager = CoinsManager.shared
     
     var body: some View {
+    
         if authManager.isLoggedIn {
             TabView {
                 PortfolioView()

@@ -45,15 +45,12 @@ struct PortfolioView: View {
                         }
                     }
                     
-                    ToolbarItem(placement:.navigationBarLeading){
+                    ToolbarItem(placement:.navigationBarTrailing){
                         
-                        Text("\(coinNumber) coins")
+                        Text("\(coinNumber) 🪙")
                             .padding()
                             .bold()
-                            .underline()
                             .foregroundColor(.purple)
-                        
-                        CoinSystemView()
                             
                     }
                 }
