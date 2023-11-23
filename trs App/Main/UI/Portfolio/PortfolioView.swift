@@ -162,25 +162,41 @@ struct PortfolioView: View {
                 NavigationLink {
                     CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
                 } label: {
-                    listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                    listRowPreview(
+                        title: achievementAndHonour.title,
+                        description: achievementAndHonour.description,
+                        credential: Credential.achievementAndHonour(achievementAndHonour)
+                    )
                 }
             case .competition(let competition):
                 NavigationLink {
                     CredentialInformationView(credential: Credential.competition(competition))
                 } label: {
-                    listRowPreview(title: competition.title, description: competition.description)
+                    listRowPreview(
+                        title: competition.title,
+                        description: competition.description,
+                        credential: Credential.competition(competition)
+                    )
                 }
             case .experience(let experience):
                 NavigationLink {
                     CredentialInformationView(credential: Credential.experience(experience))
                 } label: {
-                    listRowPreview(title: experience.title, description: experience.description)
+                    listRowPreview(
+                        title: experience.title,
+                        description: experience.description,
+                        credential: Credential.experience(experience)
+                    )
                 }
             case .project(let project):
                 NavigationLink {
                     CredentialInformationView(credential: Credential.project(project))
                 } label: {
-                    listRowPreview(title: project.title, description: project.description)
+                    listRowPreview(
+                        title: project.title,
+                        description: project.description,
+                        credential: Credential.project(project)
+                    )
                 }
             }
         }
@@ -191,7 +207,11 @@ struct PortfolioView: View {
             NavigationLink {
                 CredentialInformationView(credential: Credential.experience(experience))
             } label: {
-                listRowPreview(title: experience.title, description: experience.description)
+                listRowPreview(
+                    title: experience.title,
+                    description: experience.description,
+                    credential: Credential.experience(experience)
+                )
             }
         }
         .onDelete { indexOffset in
@@ -204,7 +224,11 @@ struct PortfolioView: View {
             NavigationLink {
                 CredentialInformationView(credential: Credential.competition(competition))
             } label: {
-                listRowPreview(title: competition.title, description: competition.description)
+                listRowPreview(
+                    title: competition.title,
+                    description: competition.description,
+                    credential: Credential.competition(competition)
+                )
             }
         }
         .onDelete { indexOffset in
@@ -217,7 +241,11 @@ struct PortfolioView: View {
             NavigationLink {
                 CredentialInformationView(credential: Credential.achievementAndHonour(achievementAndHonour))
             } label: {
-                listRowPreview(title: achievementAndHonour.title, description: achievementAndHonour.description)
+                listRowPreview(
+                    title: achievementAndHonour.title,
+                    description: achievementAndHonour.description,
+                    credential: Credential.achievementAndHonour(achievementAndHonour)
+                )
             }
         }
         .onDelete { indexOffset in
@@ -230,7 +258,11 @@ struct PortfolioView: View {
             NavigationLink {
                 CredentialInformationView(credential: Credential.project(project))
             } label: {
-                listRowPreview(title: project.title, description: project.description)
+                listRowPreview(
+                    title: project.title,
+                    description: project.description,
+                    credential: Credential.project(project)
+                )
             }
         }
         .onDelete { indexOffset in
@@ -295,7 +327,7 @@ struct PortfolioView: View {
     }
     
     @ViewBuilder
-    func listRowPreview(title: String, description: String?) -> some View {
+    func listRowPreview(title: String, description: String?, credential: Credential) -> some View {
         VStack(alignment: .leading) {
             Text(title)
                 .fontWeight(.bold)
@@ -305,7 +337,76 @@ struct PortfolioView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    switch credential {
+                    case .experience(let experience):
+                        timeInfoRectangle(experience.dateAdded)
+                        categoryInfoRectangle("Experience")
+                        importanceInfoRectangle(experience.importance)
+                        
+                    case .competition(let competition):
+                        timeInfoRectangle(competition.dateAdded)
+                        categoryInfoRectangle("Competition")
+                        importanceInfoRectangle(competition.importance)
+                        
+                    case .achievementAndHonour(let achievementAndHonour):
+                        timeInfoRectangle(achievementAndHonour.dateAdded)
+                        categoryInfoRectangle("Achievement/Honour")
+                        importanceInfoRectangle(achievementAndHonour.importance)
+                        
+                    case .project(let project):
+                        timeInfoRectangle(project.dateAdded)
+                        categoryInfoRectangle("Project")
+                        importanceInfoRectangle(project.importance)
+                    }
+                }
+            }
+            .cornerRadius(8)
         }
+    }
+    
+    @ViewBuilder
+    func timeInfoRectangle(_ date: Date) -> some View {
+        HStack {
+            Image(systemName: "calendar")
+            Text(date, format: .dateTime.day().month().year())
+                .padding(.leading, -5)
+        }
+        .font(.caption2)
+        .fontWeight(.bold)
+        .padding(5)
+        .background(.gray.opacity(0.5))
+        .cornerRadius(8)
+    }
+    
+    @ViewBuilder
+    func categoryInfoRectangle(_ text: String) -> some View {
+        HStack {
+            Image(systemName: "list.bullet.circle.fill")
+            Text(text)
+                .padding(.leading, -5)
+        }
+        .font(.caption2)
+        .fontWeight(.bold)
+        .padding(5)
+        .background(.blue.opacity(0.5))
+        .cornerRadius(8)
+    }
+    
+    @ViewBuilder
+    func importanceInfoRectangle(_ importance: Int) -> some View {
+        HStack {
+            Image(systemName: "star.fill")
+                .foregroundColor(.yellow)
+            Text("\(importance)")
+                .padding(.leading, -5)
+        }
+        .font(.caption2)
+        .fontWeight(.bold)
+        .padding(5)
+        .background(.yellow.opacity(0.5))
+        .cornerRadius(8)
     }
 }
 
