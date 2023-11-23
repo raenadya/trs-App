@@ -36,7 +36,6 @@ struct AvatarView: View {
         .scaledToFit()
         .frame(height: 600)
         .frame(width: 400)
-        .imagePicker(isPresented: $showingImagePicker, image: $profileImage)
 
             
             HStack (spacing: 70) {
@@ -503,60 +502,6 @@ struct AvatarView: View {
         }
         
     }
-    
-    
-
-import SwiftUI
-
-extension View {
-    func imagePicker(isPresented: Binding<Bool>, image: Binding<UIImage?>) -> some View {
-        sheet(isPresented: isPresented) {
-            ImagePickerView(isPresented: isPresented, selectedImage: image)
-        }
-    }
-}
-
-struct ImagePickerView: UIViewControllerRepresentable {
-    @Binding var isPresented: Bool
-    @Binding var selectedImage: UIImage?
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIViewController {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .purple // Set the background color to purple
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<ImagePickerView>) {
-        if isPresented {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = context.coordinator
-            uiViewController.present(imagePickerController, animated: true, completion: nil)
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePickerView
-
-        init(parent: ImagePickerView) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let uiImage = info[.editedImage] as? UIImage {
-                parent.selectedImage = uiImage
-            }
-
-            parent.isPresented = false
-        }
-    }
-}
-
-
-
 
 struct AvatarView_Previews: PreviewProvider {
     static var previews: some View {

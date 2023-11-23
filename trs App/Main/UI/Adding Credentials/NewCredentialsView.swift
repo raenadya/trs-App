@@ -32,6 +32,8 @@ struct NewCredentialsView: View {
     
     @State var rating = 0
     
+    @State private var showAddAlert = false
+    
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var credentialsManager: CredentialsManager = .shared
@@ -96,10 +98,10 @@ struct NewCredentialsView: View {
                 .disabled(disabled)
             }
         }
-        .fileImporter(isPresented: $openFileDirectory,
-                      
-                      allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf],
-                      allowsMultipleSelection: true) { files in
+        .alert(isPresented: $coinsManager.showAlert) {
+            Alert(title: Text("You've earned 5 coins!"), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .fileImporter(isPresented: $openFileDirectory, allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf], allowsMultipleSelection: true) { files in
             do {
                 let fileURL = try files.get()
                 print(fileURL)
@@ -228,7 +230,7 @@ struct NewCredentialsView: View {
                                                                       tag: experienceTagSelection,
                                                                       importance: rating)
             )
-            coinsManager.addCoins(amount: 5)
+            coinsManager.addCredential(amount: 5)
         case .competitions:
             credentialsManager.addToCompetitions(withValue: Competition(dateAdded: Date(),
                                                                         title: title,
@@ -240,7 +242,7 @@ struct NewCredentialsView: View {
                                                                         tag: competitionTagSelection,
                                                                         importance: rating)
             )
-            coinsManager.addCoins(amount: 5)
+            coinsManager.addCredential(amount: 5)
         case .achievementsAndHonours:
             credentialsManager.addToAchievementAndHonours(withValue: AchievementAndHonour(dateAdded: Date(),
                                                                                           title: title,
@@ -251,7 +253,7 @@ struct NewCredentialsView: View {
                                                                                           description: description,
                                                                                           importance: rating)
             )
-            coinsManager.addCoins(amount: 5)
+            coinsManager.addCredential(amount: 5)
         case .projects:
             credentialsManager.addToProjects(withValue: Project(dateAdded: Date(),
                                                                 title: title,
@@ -261,13 +263,18 @@ struct NewCredentialsView: View {
                                                                 description: description,
                                                                 importance: rating)
             )
-            coinsManager.addCoins(amount: 5)
+            coinsManager.addCredential(amount: 5)
         }
+        
+        
         showingCredentialInformation = false
         showingAddCredentialView = false
+        
+        coinsManager.showAlert = true
     }
     
 }
+
     //struct NewCredentialsView_Previews: PreviewProvider {
     //    static var previews: some View {
     //        NewCredentialsView()
