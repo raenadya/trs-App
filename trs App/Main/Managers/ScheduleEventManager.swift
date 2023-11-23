@@ -23,6 +23,7 @@ class ScheduleEventManager: ObservableObject {
     @Persistent("scheduledEvents") private var internalScheduledEvents: [Event] = []
     
     @Published var scheduledEvents: [Event] = []
+    @ObservedObject var notificationManager: NotificationManager = .shared
     
     init() {
         updatePublishedVariables()
@@ -40,6 +41,9 @@ class ScheduleEventManager: ObservableObject {
     }
     
     func removeScheduledEvent(atOffset index: IndexSet) {
+        var uuids: [String] = []
+        index.forEach { uuids.append(self.scheduledEvents[$0].id.uuidString) }
+        notificationManager.removeNotifications(uuids: uuids, for: .both)
         internalScheduledEvents.remove(atOffsets: index)
         updatePublishedVariables()
     }
