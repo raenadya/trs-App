@@ -45,7 +45,6 @@ struct ScheduleView: View {
                     Text("Schedule your events and receive a notification to remind you to update your portfolio here!")
                         .padding(.horizontal)
                         .multilineTextAlignment(.center)
-                        .font(.title3)
                 }
             }
             .navigationTitle("Schedule")
