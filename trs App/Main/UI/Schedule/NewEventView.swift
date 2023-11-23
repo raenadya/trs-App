@@ -73,12 +73,6 @@ struct NewEventView: View {
                                              startDate: startDate,
                                              endDate: endDate)
                         )
-                        notificationManager.addNotification(
-                            uuid: eventUUID,
-                            title: "Event in 30 minutes",
-                            subtitle: "Your Event \"\(eventName)\" by \"\(organiserName)\" starts in 30 minutes.", 
-                            startDate: startDate
-                        )
                         dismiss.callAsFunction()
                     } label: {
                         Text("Add")
@@ -93,6 +87,6 @@ struct NewEventView: View {
 
 struct NewEventView_Previews: PreviewProvider {
     static var previews: some View {
-        NewEventView ()
+        NewEventView()
     }
 }

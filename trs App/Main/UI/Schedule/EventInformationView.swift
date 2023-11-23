@@ -83,12 +83,14 @@ struct EventInformationView: View {
             if newValue == false {
                 let index = scheduledEvents.firstIndex { $0.id == event.id }
                 guard let index = index else { return }
-                scheduledEvents[index] = Event(id: event.id,
-                                               eventName: eventName,
-                                               organiserName: organiserName,
-                                               description: description,
-                                               startDate: startDate,
-                                               endDate: endDate)
+                let newEvent = Event(id: event.id,
+                                     eventName: eventName,
+                                     organiserName: organiserName,
+                                     description: description,
+                                     startDate: startDate,
+                                     endDate: endDate)
+                scheduledEvents[index] = newEvent
+                notificationManager.editNotification(newEvent: newEvent)
                 seManager.updatePublishedVariables()
             }
         }

@@ -23,6 +23,7 @@ class ScheduleEventManager: ObservableObject {
     @Persistent("scheduledEvents") private var internalScheduledEvents: [Event] = []
     
     @Published var scheduledEvents: [Event] = []
+    @ObservedObject var notificationManager: NotificationManager = .shared
     
     init() {
         updatePublishedVariables()
@@ -35,11 +36,23 @@ class ScheduleEventManager: ObservableObject {
     }
     
     func addToScheduledEvents(withValue event: Event) {
+        notificationManager.addNotifications(
+            uuid: event.id,
+            startTitle: "\(event.eventName)",
+            startBody: "The event \(event.eventName) organised by \(event.organiserName) starts in 30 minutes.",
+            endTitle: "\(event.eventName)",
+            endBody: "Add any achievements or credentials you've attained during this event into your portfolio.",
+            startDate: event.startDate,
+            endDate: event.endDate
+        )
         internalScheduledEvents.insert(event, at: 0)
         updatePublishedVariables()
     }
     
     func removeScheduledEvent(atOffset index: IndexSet) {
+        var uuids: [String] = []
+        index.forEach { uuids.append(self.scheduledEvents[$0].id.uuidString) }
+        notificationManager.removeNotifications(uuids: uuids, for: .both)
         internalScheduledEvents.remove(atOffsets: index)
         updatePublishedVariables()
     }

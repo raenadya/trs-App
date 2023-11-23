@@ -8,7 +8,7 @@
 import SwiftUI
 
 class CoinsManager: ObservableObject {
-    static let shared = CoinsManager()
+    static let shared: CoinsManager = .init()
 
     @Published var coinCount = 0
     @Published var showAlert = false
