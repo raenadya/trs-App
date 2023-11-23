@@ -35,6 +35,7 @@ struct NewCredentialsView: View {
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var credentialsManager: CredentialsManager = .shared
+    @ObservedObject var coinsManager: CoinsManager = .shared
     
     var disabled: Bool {
         switch forType {
@@ -227,6 +228,7 @@ struct NewCredentialsView: View {
                                                                       tag: experienceTagSelection,
                                                                       importance: rating)
             )
+            coinsManager.addCoins(amount: 5)
         case .competitions:
             credentialsManager.addToCompetitions(withValue: Competition(dateAdded: Date(),
                                                                         title: title,
@@ -238,6 +240,7 @@ struct NewCredentialsView: View {
                                                                         tag: competitionTagSelection,
                                                                         importance: rating)
             )
+            coinsManager.addCoins(amount: 5)
         case .achievementsAndHonours:
             credentialsManager.addToAchievementAndHonours(withValue: AchievementAndHonour(dateAdded: Date(),
                                                                                           title: title,
@@ -248,23 +251,25 @@ struct NewCredentialsView: View {
                                                                                           description: description,
                                                                                           importance: rating)
             )
+            coinsManager.addCoins(amount: 5)
         case .projects:
             credentialsManager.addToProjects(withValue: Project(dateAdded: Date(),
                                                                 title: title,
                                                                 organiserName: organiser,
                                                                 startDate: startDate,
                                                                 endDate: endDate,
-                                                                description: description, 
+                                                                description: description,
                                                                 importance: rating)
             )
+            coinsManager.addCoins(amount: 5)
         }
         showingCredentialInformation = false
         showingAddCredentialView = false
     }
+    
 }
-
-//struct NewCredentialsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewCredentialsView()
-//    }
-//}
+    //struct NewCredentialsView_Previews: PreviewProvider {
+    //    static var previews: some View {
+    //        NewCredentialsView()
+    //    }
+    //}
