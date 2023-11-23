@@ -11,6 +11,7 @@ struct PortfolioView: View {
     
     enum PortfolioListSortType: String, CaseIterable {
         case noSort = "None"
+        case alphabetically = "A-Z"
         case category = "Category"
         case importance = "Importance"
     }
@@ -283,6 +284,8 @@ struct PortfolioView: View {
         switch sortSelection {
         case .noSort:
             return credentials
+        case .alphabetically:
+            return credentials.sorted { $0.title < $1.title }
         case .category:
             return credentials.sorted { $0.type.rawValue < $1.type.rawValue }
         case .importance:
@@ -294,6 +297,8 @@ struct PortfolioView: View {
         switch sortSelection {
         case .noSort, .category:
             return credentialsManager.experiences
+        case .alphabetically:
+            return credentialsManager.experiences.sorted { $0.title < $1.title }
         case .importance:
             return credentialsManager.experiences.sorted { $0.importance > $1.importance }
         }
@@ -303,6 +308,8 @@ struct PortfolioView: View {
         switch sortSelection {
         case .noSort, .category:
             return credentialsManager.competitions
+        case .alphabetically:
+            return credentialsManager.competitions.sorted { $0.title < $1.title }
         case .importance:
             return credentialsManager.competitions.sorted { $0.importance > $1.importance }
         }
@@ -312,6 +319,8 @@ struct PortfolioView: View {
         switch sortSelection {
         case .noSort, .category:
             return credentialsManager.achievementAndHonours
+        case .alphabetically:
+            return credentialsManager.achievementAndHonours.sorted { $0.title < $1.title }
         case .importance:
             return credentialsManager.achievementAndHonours.sorted { $0.importance > $1.importance }
         }
@@ -321,6 +330,8 @@ struct PortfolioView: View {
         switch sortSelection {
         case .noSort, .category:
             return credentialsManager.projects
+        case .alphabetically:
+            return credentialsManager.projects.sorted { $0.title < $1.title }
         case .importance:
             return credentialsManager.projects.sorted { $0.importance > $1.importance }
         }
