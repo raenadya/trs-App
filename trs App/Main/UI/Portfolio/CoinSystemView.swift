@@ -14,9 +14,8 @@ struct CoinSystemView: View {
     @State private var coinNumber = 0
     
     var body: some View {
-        VStack{
+        VStack {
             NavigationStack {
-                
                 Button("after credential added") {
                     showCoinAlert = true
                     coinNumber += 5
@@ -30,29 +29,28 @@ struct CoinSystemView: View {
                     
                 }
                 
-                Button("after credential delete"){
+                Button("after credential delete") {
                     showDeleteAlert = true
                     coinNumber -= 5
                 }
-                .alert(isPresented: $showDeleteAlert){
+                .alert(isPresented: $showDeleteAlert) {
                     Alert(
-                    title: Text("Delete"),
-                    message: Text("You lose 5 coins"),
-                    dismissButton:
-                            .default(Text("OK"))
+                        title: Text("Delete"),
+                        message: Text("You lose 5 coins"),
+                        dismissButton: .default(Text("OK"))
                     )
                 }
                 
-            Text("\(coinNumber) coins")
-                .padding()
-                }
-            }
-        }
-        
-        struct CoinSystemView_Previews: PreviewProvider {
-            static var previews: some View {
-                CoinSystemView()
+                Text("\(coinNumber) coins")
+                    .padding()
             }
         }
     }
+}
+
+struct CoinSystemView_Previews: PreviewProvider {
+    static var previews: some View {
+        CoinSystemView()
+    }
+}
 
