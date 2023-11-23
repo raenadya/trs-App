@@ -104,7 +104,6 @@
 		90AEEF132AA5718F00E28133 = {
 			isa = PBXGroup;
 			children = (
-				904198D92B0FA68C003652F9 /* CoinsSystemView.swift */,
 				90AEEF1E2AA5718F00E28133 /* trs App */,
 				90AEEF1D2AA5718F00E28133 /* Products */,
 			);
@@ -215,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				F36CA2802B06712B0097620C /* PortfolioView.swift */,
+				904198D92B0FA68C003652F9 /* CoinsSystemView.swift */,
 				F33E68BB2B086E7F00DED94F /* CredentialInformationView.swift */,
 			);
 			path = Portfolio;
