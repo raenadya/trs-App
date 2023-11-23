@@ -23,11 +23,14 @@ struct RatingView: View {
                 Spacer()
             }
             ForEach(1..<maximumRating + 1, id: \.self) { number in
-                Button {
-                    if editable {
+                if editable {
+                    Button {
                         rating = number
+                    } label: {
+                        image(for: number)
+                            .foregroundColor(number > rating ? offColor : onColor)
                     }
-                } label: {
+                } else {
                     image(for: number)
                         .foregroundColor(number > rating ? offColor : onColor)
                 }
