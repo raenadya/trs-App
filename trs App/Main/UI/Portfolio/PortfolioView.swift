@@ -168,18 +168,17 @@ struct PortfolioView: View {
                 } label: {
                     listRowPreview(
                         title: achievementAndHonour.title,
-                        description: achievementAndHonour.achievementLevel,
+                        description: achievementAndHonour.description,
                         credential: Credential.achievementAndHonour(achievementAndHonour)
                     )
                 }
-                
             case .competition(let competition):
                 NavigationLink {
                     CredentialInformationView(credential: Credential.competition(competition))
                 } label: {
                     listRowPreview(
                         title: competition.title,
-                        description: competition.achievementLevel,
+                        description: competition.description,
                         credential: Credential.competition(competition)
                     )
                 }
@@ -205,9 +204,6 @@ struct PortfolioView: View {
                 }
             }
         }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
-        }
     }
     
     var experiencesCategory: some View {
@@ -221,18 +217,6 @@ struct PortfolioView: View {
                     credential: Credential.experience(experience)
                 )
             }
-        }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
-        }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
-        }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
-        }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
         }
     }
     
@@ -248,9 +232,6 @@ struct PortfolioView: View {
                 )
             }
         }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
-        }
     }
     
     var achievementsAndHonoursCategory: some View {
@@ -265,9 +246,6 @@ struct PortfolioView: View {
                 )
             }
         }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
-        }
     }
     
     var projectsCategory: some View {
@@ -281,9 +259,6 @@ struct PortfolioView: View {
                     credential: Credential.project(project)
                 )
             }
-        }
-        .onDelete { indexOffset in
-            credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
         }
     }
     
@@ -392,6 +367,20 @@ struct PortfolioView: View {
                 }
             }
             .cornerRadius(8)
+        }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button("Delete", role: .destructive) {
+                switch credential {
+                case .experience(let experience):
+                    credentialsManager.removeCredential(forType: .experiences, withID: experience.id)
+                case .competition(let competition):
+                    credentialsManager.removeCredential(forType: .competitions, withID: competition.id)
+                case .achievementAndHonour(let achievementAndHonour):
+                    credentialsManager.removeCredential(forType: .achievementsAndHonours, withID: achievementAndHonour.id)
+                case .project(let project):
+                    credentialsManager.removeCredential(forType: .projects, withID: project.id)
+                }
+            }
         }
     }
     

@@ -260,18 +260,22 @@ class CredentialsManager: ObservableObject {
         updatePublishedVariables()
     }
 
-    func removeCredential(forType type: CategoryType, atOffset offset: IndexSet) {
+    func removeCredential(forType type: CategoryType, withID id: UUID) {
         switch type {
         case .all:
             break
         case .experiences:
-            internalExperiences.remove(atOffsets: offset)
+            guard let index = internalExperiences.firstIndex(where: { $0.id == id }) else { return }
+            internalExperiences.remove(at: index)
         case .competitions:
-            internalCompetitions.remove(atOffsets: offset)
+            guard let index = internalCompetitions.firstIndex(where: { $0.id == id }) else { return }
+            internalCompetitions.remove(at: index)
         case .achievementsAndHonours:
-            internalAchievementAndHonours.remove(atOffsets: offset)
+            guard let index = internalAchievementAndHonours.firstIndex(where: { $0.id == id }) else { return }
+            internalAchievementAndHonours.remove(at: index)
         case .projects:
-            internalProjects.remove(atOffsets: offset)
+            guard let index = internalProjects.firstIndex(where: { $0.id == id }) else { return }
+            internalProjects.remove(at: index)
         }
         updatePublishedVariables()
     }
