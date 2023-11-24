@@ -14,9 +14,6 @@ struct ProfileView: View {
     var body: some View {
         VStack {
             ZStack {
-                Circle()
-                    .fill(Color.secondary)
-                    .frame(width: 150, height: 150)
 
                 if let profileImage = profileImage {
                     profileImage
@@ -26,34 +23,15 @@ struct ProfileView: View {
                         .clipShape(Circle())
                 } else {
                     Text("Select a Profile Picture")
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .font(.headline)
                 }
             }
             .onTapGesture {
                 isImagePickerPresented.toggle()
             }
-            .sheet(isPresented: $isImagePickerPresented) {
-                ImagePickerView(selectedImage: $profileImage)
-            }
         }
         .padding()
-    }
-}
-
-struct ImagePickerView: View {
-    @Binding var selectedImage: Image?
-
-    @State private var isImagePickerPresented: Bool = false
-    @State private var selectedUIImage: UIImage?
-
-    var body: some View {
-        ImagePicker(image: $selectedUIImage, isImagePickerPresented: $isImagePickerPresented)
-            .onDisappear {
-                if let selectedUIImage = selectedUIImage {
-                    selectedImage = Image(uiImage: selectedUIImage)
-                }
-            }
     }
 }
 
@@ -61,23 +39,26 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @Binding var isImagePickerPresented: Bool
 
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = context.coordinator
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.allowsEditing = true
-        return imagePickerController
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        // Update any configurations if needed
-    }
-
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
 
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func makeUIViewController(context: Context) -> UIViewController {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .clear
+        context.coordinator.parent = self
+        return viewController
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        if isImagePickerPresented {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = context.coordinator
+            uiViewController.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         var parent: ImagePicker
 
         init(parent: ImagePicker) {
@@ -85,9 +66,10 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
 
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let selectedImage = info[.editedImage] as? UIImage {
-                parent.image = selectedImage
+            if let uiImage = info[.originalImage] as? UIImage {
+                parent.image = uiImage
             }
+
             parent.isImagePickerPresented = false
         }
 

@@ -168,7 +168,7 @@ struct PortfolioView: View {
                 } label: {
                     listRowPreview(
                         title: achievementAndHonour.title,
-                        description: achievementAndHonour.description,
+                        description: achievementAndHonour.achievementLevel,
                         credential: Credential.achievementAndHonour(achievementAndHonour)
                     )
                 }
@@ -179,7 +179,7 @@ struct PortfolioView: View {
                 } label: {
                     listRowPreview(
                         title: competition.title,
-                        description: competition.description,
+                        description: competition.achievementLevel,
                         credential: Credential.competition(competition)
                     )
                 }
