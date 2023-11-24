@@ -225,6 +225,15 @@ struct PortfolioView: View {
         .onDelete { indexOffset in
             credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
         }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .competitions, atOffset: indexOffset)
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .achievementsAndHonours, atOffset: indexOffset)
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .projects, atOffset: indexOffset)
+        }
     }
     
     var competitionsCategory: some View {
