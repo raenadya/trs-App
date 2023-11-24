@@ -32,6 +32,10 @@ struct NewCredentialsView: View {
     
     @State var rating = 0
     
+//    @State private var showCoinAlert = false
+//    @State private var showDeleteAlert = false
+//    @State private var coinNumber = 0
+    
     @State private var showAddAlert = false
     
     @Environment(\.dismiss) var dismiss
@@ -92,9 +96,18 @@ struct NewCredentialsView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     addCredential()
+//                    showCoinAlert = true
+//                    coinNumber += 5
                 } label: {
                     Text("Add")
                 }
+//                .alert(isPresented: $showCoinAlert) {
+//                    Alert(
+//                        title: Text("Congrats!"),
+//                        message: Text("You've earned 5 coins."),
+//                        dismissButton: .default(Text("OK"))
+//                    )
+//                }
                 .disabled(disabled)
             }
         }

@@ -73,6 +73,9 @@ struct PortfolioView: View {
                         if filterManager.currentSelection != .all {
                             EditButton()
                         }
+                        if filterManager.currentSelection == .all {
+                            EditButton()
+                        }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
@@ -94,7 +97,7 @@ struct PortfolioView: View {
                             .bold()
                             .underline()
                             .foregroundColor(.purple)
-                        CoinSystemView()  
+                        //CoinSystemView()
                     }
                 }
         }
@@ -169,6 +172,7 @@ struct PortfolioView: View {
                         credential: Credential.achievementAndHonour(achievementAndHonour)
                     )
                 }
+                
             case .competition(let competition):
                 NavigationLink {
                     CredentialInformationView(credential: Credential.competition(competition))
@@ -200,6 +204,9 @@ struct PortfolioView: View {
                     )
                 }
             }
+        }
+        .onDelete { indexOffset in
+            credentialsManager.removeCredential(forType: .experiences, atOffset: indexOffset)
         }
     }
     
