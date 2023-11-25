@@ -65,7 +65,13 @@ struct PortfolioView: View {
         NavigationStack {
             list
                 .safeAreaInset(edge: .top) {
-                    FilterButtons()
+                    FilterButtons(
+                        allCount: .constant(sortedCredentials.count),
+                        experienceCount: .constant(experiences.count),
+                        competitionsCount: .constant(competitions.count),
+                        achievementsAndHonoursCount: .constant(achievementsAndHonours.count),
+                        projectsCount: .constant(projects.count)
+                    )
                 }
                 .navigationTitle("My Portfolio")
                 .toolbar {

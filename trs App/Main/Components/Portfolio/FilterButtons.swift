@@ -9,28 +9,35 @@ import SwiftUI
 
 struct FilterButtons: View {
     
+    
+    @Binding var allCount: Int
+    @Binding var experienceCount: Int
+    @Binding var competitionsCount: Int
+    @Binding var achievementsAndHonoursCount: Int
+    @Binding var projectsCount: Int
+    
     @ObservedObject var filterManager: FilterManager = .shared
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                filterButton(text: "All",
+                filterButton(text: "All (\(allCount))",
                              isSelected: filterManager.currentSelection == CategoryType.all,
                              updateTo: .all)
                 
-                filterButton(text: "Experiences",
+                filterButton(text: "Experiences (\(experienceCount))",
                              isSelected: filterManager.currentSelection == CategoryType.experiences,
                              updateTo: .experiences)
                 
-                filterButton(text: "Competitions",
+                filterButton(text: "Competitions (\(competitionsCount))",
                              isSelected: filterManager.currentSelection == CategoryType.competitions,
                              updateTo: .competitions)
                 
-                filterButton(text: "Achievements/Honours",
+                filterButton(text: "Achievements/Honours (\(achievementsAndHonoursCount))",
                              isSelected: filterManager.currentSelection == CategoryType.achievementsAndHonours,
                              updateTo: .achievementsAndHonours)
                 
-                filterButton(text: "Projects",
+                filterButton(text: "Projects (\(projectsCount))",
                              isSelected: filterManager.currentSelection == CategoryType.projects,
                              updateTo: .projects)
                 
@@ -60,8 +67,8 @@ struct FilterButtons: View {
     }
 }
 
-struct FilterButtons_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterButtons()
-    }
-}
+//struct FilterButtons_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FilterButtons()
+//    }
+//}
