@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>Purrfolio requires notification permissions to send reminders for your scheduled events.</string>
+	<string>Pawtfolio requires notification permissions to send reminders for your scheduled events.</string>
 </dict>
 </plist>
