@@ -227,6 +227,8 @@ class CredentialsManager: ObservableObject {
     @Published var achievementAndHonours: [AchievementAndHonour] = []
     @Published var projects: [Project] = []
     
+    @ObservedObject var coinsManager: CoinsManager = .shared
+    
     init() {
         updatePublishedVariables()
     }
@@ -278,5 +280,6 @@ class CredentialsManager: ObservableObject {
             internalProjects.remove(at: index)
         }
         updatePublishedVariables()
+        coinsManager.removeCounts(amount: 5)
     }
 }
