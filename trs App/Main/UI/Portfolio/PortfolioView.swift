@@ -102,7 +102,7 @@ struct PortfolioView: View {
                         Text("\(coinsManager.coins) coins")
                             .bold()
                             .underline()
-                            .foregroundColor(.purple)
+                            .foregroundColor(Color.accentColor)
                     }
                 }
         }
