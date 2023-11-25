@@ -111,9 +111,9 @@ struct NewCredentialsView: View {
                 .disabled(disabled)
             }
         }
-        .alert(isPresented: $coinsManager.showAlert) {
-            Alert(title: Text("You've earned 5 coins!"), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
-        }
+//        .alert(isPresented: $coinsManager.showAlert) {
+//            Alert(title: Text("You've earned 5 coins!"), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
+        //}
         .fileImporter(isPresented: $openFileDirectory, allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf], allowsMultipleSelection: true) { files in
             do {
                 let fileURL = try files.get()

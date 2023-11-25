@@ -181,7 +181,6 @@
 		F36CA2862B0682850097620C /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F36CA2902B06F6410097620C /* Color+Hex.swift */,
 				F36CA2872B06828D0097620C /* Portfolio */,
 				F3C6EE2D2B0C4214002D32F7 /* CredentialInformationView */,
 			);
@@ -245,6 +244,7 @@
 		F36CA2942B06FB430097620C /* Adding Credentials */ = {
 			isa = PBXGroup;
 			children = (
+				F36CA2902B06F6410097620C /* Color+Hex.swift */,
 				F36CA28E2B0683B30097620C /* CategoriesView.swift */,
 				F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */,
 			);
