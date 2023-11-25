@@ -24,6 +24,7 @@ struct PortfolioView: View {
     
     @State var coinNumber = 0
     
+    @State var showingDeleteAlert = false
     @State var sortSelection: PortfolioListSortType = .noSort
     
     var showSortPicker: Bool {
@@ -97,7 +98,6 @@ struct PortfolioView: View {
                             .bold()
                             .underline()
                             .foregroundColor(.purple)
-                        //CoinSystemView()
                     }
                 }
         }
@@ -204,6 +204,14 @@ struct PortfolioView: View {
                 }
             }
         }
+        .onDelete { indexOffset in
+            indexOffset.forEach { index in
+                credentialsManager.removeCredential(
+                    forType: sortedCredentials[index].type,
+                    withID: sortedCredentials[index].id
+                )
+            }
+        }
     }
     
     var experiencesCategory: some View {
@@ -215,6 +223,14 @@ struct PortfolioView: View {
                     title: experience.title,
                     description: experience.description,
                     credential: Credential.experience(experience)
+                )
+            }
+        }
+        .onDelete { indexOffset in
+            indexOffset.forEach { index in
+                credentialsManager.removeCredential(
+                    forType: sortedCredentials[index].type,
+                    withID: sortedCredentials[index].id
                 )
             }
         }
@@ -232,6 +248,14 @@ struct PortfolioView: View {
                 )
             }
         }
+        .onDelete { indexOffset in
+            indexOffset.forEach { index in
+                credentialsManager.removeCredential(
+                    forType: sortedCredentials[index].type,
+                    withID: sortedCredentials[index].id
+                )
+            }
+        }
     }
     
     var achievementsAndHonoursCategory: some View {
@@ -246,6 +270,14 @@ struct PortfolioView: View {
                 )
             }
         }
+        .onDelete { indexOffset in
+            indexOffset.forEach { index in
+                credentialsManager.removeCredential(
+                    forType: sortedCredentials[index].type,
+                    withID: sortedCredentials[index].id
+                )
+            }
+        }
     }
     
     var projectsCategory: some View {
@@ -257,6 +289,14 @@ struct PortfolioView: View {
                     title: project.title,
                     description: project.description,
                     credential: Credential.project(project)
+                )
+            }
+        }
+        .onDelete { indexOffset in
+            indexOffset.forEach { index in
+                credentialsManager.removeCredential(
+                    forType: sortedCredentials[index].type,
+                    withID: sortedCredentials[index].id
                 )
             }
         }
@@ -367,20 +407,6 @@ struct PortfolioView: View {
                 }
             }
             .cornerRadius(8)
-        }
-        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            Button("Delete", role: .destructive) {
-                switch credential {
-                case .experience(let experience):
-                    credentialsManager.removeCredential(forType: .experiences, withID: experience.id)
-                case .competition(let competition):
-                    credentialsManager.removeCredential(forType: .competitions, withID: competition.id)
-                case .achievementAndHonour(let achievementAndHonour):
-                    credentialsManager.removeCredential(forType: .achievementsAndHonours, withID: achievementAndHonour.id)
-                case .project(let project):
-                    credentialsManager.removeCredential(forType: .projects, withID: project.id)
-                }
-            }
         }
     }
     

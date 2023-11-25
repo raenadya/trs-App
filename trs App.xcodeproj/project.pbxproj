@@ -32,6 +32,7 @@
 		F36CA2962B06FBBF0097620C /* NewCredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2952B06FBBF0097620C /* NewCredentialsView.swift */; };
 		F36CA2982B0709160097620C /* CredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CA2972B0709160097620C /* CredentialsManager.swift */; };
 		F3A87A412B0CF06C0001FA7C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A87A402B0CF06C0001FA7C /* NotificationManager.swift */; };
+		F3B228062B11902D00AFE97A /* ScrollKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3B228052B11902D00AFE97A /* ScrollKit */; };
 		F3C6EDF92B0AF2CA002D32F7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F3C6EDF82B0AF2CA002D32F7 /* FirebaseAuth */; };
 		F3C6EDFB2B0AF2CA002D32F7 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F3C6EDFA2B0AF2CA002D32F7 /* FirebaseAuthCombine-Community */; };
 		F3C6EE052B0AF2CA002D32F7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F3C6EE042B0AF2CA002D32F7 /* FirebaseFirestore */; };
@@ -93,6 +94,7 @@
 				F3C6EE072B0AF2CA002D32F7 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				F3C6EE092B0AF2CA002D32F7 /* FirebaseFirestoreSwift in Frameworks */,
 				90B0A1E42B071D7A0001C32F /* SwiftPersistence in Frameworks */,
+				F3B228062B11902D00AFE97A /* ScrollKit in Frameworks */,
 				F3C6EDF92B0AF2CA002D32F7 /* FirebaseAuth in Frameworks */,
 				F3C6EE052B0AF2CA002D32F7 /* FirebaseFirestore in Frameworks */,
 			);
@@ -292,6 +294,7 @@
 				F3C6EE042B0AF2CA002D32F7 /* FirebaseFirestore */,
 				F3C6EE062B0AF2CA002D32F7 /* FirebaseFirestoreCombine-Community */,
 				F3C6EE082B0AF2CA002D32F7 /* FirebaseFirestoreSwift */,
+				F3B228052B11902D00AFE97A /* ScrollKit */,
 			);
 			productName = "trs App";
 			productReference = 90AEEF1C2AA5718F00E28133 /* trs App.app */;
@@ -324,6 +327,7 @@
 			packageReferences = (
 				90B0A1E22B071D7A0001C32F /* XCRemoteSwiftPackageReference "SwiftPersistence" */,
 				F3C6EDEB2B0AF2CA002D32F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F3B228042B11902D00AFE97A /* XCRemoteSwiftPackageReference "ScrollKit" */,
 			);
 			productRefGroup = 90AEEF1D2AA5718F00E28133 /* Products */;
 			projectDirPath = "";
@@ -605,6 +609,14 @@
 				version = 1.1.2;
 			};
 		};
+		F3B228042B11902D00AFE97A /* XCRemoteSwiftPackageReference "ScrollKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/ScrollKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		F3C6EDEB2B0AF2CA002D32F7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -620,6 +632,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 90B0A1E22B071D7A0001C32F /* XCRemoteSwiftPackageReference "SwiftPersistence" */;
 			productName = SwiftPersistence;
+		};
+		F3B228052B11902D00AFE97A /* ScrollKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3B228042B11902D00AFE97A /* XCRemoteSwiftPackageReference "ScrollKit" */;
+			productName = ScrollKit;
 		};
 		F3C6EDF82B0AF2CA002D32F7 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
