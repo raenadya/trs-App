@@ -10,17 +10,29 @@ import SwiftUI
 class CoinsManager: ObservableObject {
     static let shared: CoinsManager = .init()
 
-    @Published var coinCount = 0
+    @Published var coins = 0
     @Published var showAlert = false
     @Published var alertMessage = ""
+    
+    @AppStorage("coins", store: .standard) private var internalCoins = 0
+    
+    init() {
+        
+    }
+    
+    func updatePublishedCoins() {
+        self.coins = internalCoins
+    }
 
-    func addCredential(amount: Int) {
-        coinCount += amount
+    func addCoins(amount: Int) {
+        internalCoins += amount
+        updatePublishedCoins()
         showAlert(message: "\(amount) coins added!")
     }
 
-    func removeCredential(amount: Int) {
-        coinCount -= amount
+    func removeCounts(amount: Int) {
+        internalCoins -= amount
+        updatePublishedCoins()
         showAlert(message: "\(amount) coins removed!")
     }
 

@@ -19,10 +19,9 @@ struct PortfolioView: View {
     @State var showingAddCredentialView = false
     @State var showingTipsView = false
     
+    @ObservedObject var coinsManager: CoinsManager = .shared
     @ObservedObject var filterManager: FilterManager = .shared
     @ObservedObject var credentialsManager: CredentialsManager = .shared
-    
-    @State var coinNumber = 0
     
     @State var showingDeleteAlert = false
     @State var sortSelection: PortfolioListSortType = .noSort
@@ -94,7 +93,7 @@ struct PortfolioView: View {
                     }
                     
                     ToolbarItem(placement:.navigationBarLeading){
-                        Text("\(coinNumber) coins")
+                        Text("\(coinsManager.coins) coins")
                             .bold()
                             .underline()
                             .foregroundColor(.purple)
