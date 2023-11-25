@@ -33,7 +33,7 @@ class CoinsManager: ObservableObject {
     func removeCounts(amount: Int) {
         internalCoins -= amount
         updatePublishedCoins()
-        showAlert(message: "\(amount) coins removed!")
+        showAlert(message: "\(amount) coins removed.")
     }
 
     private func showAlert(message: String) {
