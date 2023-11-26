@@ -17,22 +17,24 @@ class CoinsManager: ObservableObject {
     @AppStorage("coins", store: .standard) private var internalCoins = 0
     
     init() {
-        
+        updatePublishedVariables()
     }
     
-    func updatePublishedCoins() {
-        self.coins = internalCoins
+    func updatePublishedVariables() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+            self.coins = self.internalCoins
+        }
     }
 
     func addCoins(amount: Int) {
         internalCoins += amount
-        updatePublishedCoins()
+        updatePublishedVariables()
         showAlert(message: "\(amount) coins added!")
     }
 
     func removeCounts(amount: Int) {
         internalCoins -= amount
-        updatePublishedCoins()
+        updatePublishedVariables()
         showAlert(message: "\(amount) coins removed.")
     }
 
