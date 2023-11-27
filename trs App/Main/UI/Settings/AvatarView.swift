@@ -19,11 +19,13 @@ struct AvatarView: View {
     
     @ObservedObject var coinsManager: CoinsManager = .shared
     @ObservedObject var avatarManager: AvatarManager = .shared
-    
+
     var body: some View {
-        ScrollView {
+        VStack {
             cat
-            accessories
+            ScrollView(.vertical, showsIndicators: false) {
+                accessories
+            }
         }
         .navigationTitle("Avatar")
         .navigationBarTitleDisplayMode(.inline)
@@ -73,6 +75,20 @@ struct AvatarView: View {
                         .frame(width: 200, height: 200)
                         .clipShape(Circle())
                 }
+                .overlay {
+                    if let selectedAccessoryID = avatarManager.selectedAccessoryID {
+                        Image(avatarManager.getImageName(withID: selectedAccessoryID))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .scaleEffect(avatarManager.scale)
+                            .rotationEffect(Angle.degrees(avatarManager.rotation))
+                            .position(avatarManager.location)
+                            .gesture(
+                                simpleDrag
+                            )
+                    }
+                }
             } else {
                 Button {
                     isImagePickerPresented.toggle()
@@ -87,8 +103,62 @@ struct AvatarView: View {
                 .buttonStyle(.plain)
             }
         }
-        .padding(.vertical)
-        .padding(.top, 100)
+        .padding(.vertical, 60)
+    }
+    
+    @GestureState private var startLocation: CGPoint? = nil
+    var simpleDrag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                var newLocation = startLocation ?? avatarManager.location // 3
+                newLocation.x += value.translation.width
+                newLocation.y += value.translation.height
+                
+                if newLocation.y >= 240 {
+                    if newLocation.x >= 274 {
+                        avatarManager.updateLocation(to: CGPoint(x: 274, y: 240))
+                    } else if newLocation.x <= -73 {
+                        avatarManager.updateLocation(to: CGPoint(x: -73, y: 240))
+                    } else {
+                        avatarManager.updateLocation(to: CGPoint(x: newLocation.x, y: 240))
+                    }
+                } else if newLocation.y <= -45 {
+                    if newLocation.x >= 274 {
+                        avatarManager.updateLocation(to: CGPoint(x: 274, y: -45))
+                    } else if newLocation.x <= -73 {
+                        avatarManager.updateLocation(to: CGPoint(x: -73, y: -45))
+                    } else {
+                        avatarManager.updateLocation(to: CGPoint(x: newLocation.x, y: -45))
+                    }
+                } else {
+                    if newLocation.x >= 274 {
+                        avatarManager.updateLocation(to: CGPoint(x: 274, y: newLocation.y))
+                    } else if newLocation.x <= -73 {
+                        avatarManager.updateLocation(to: CGPoint(x: -73, y: newLocation.y))
+                    } else {
+                        avatarManager.updateLocation(to: newLocation)
+                    }
+                }
+            }
+            .updating($startLocation) { (value, startLocation, transaction) in
+                startLocation = startLocation ?? avatarManager.location
+            }
+            .simultaneously(with: RotationGesture()
+                .onChanged { value in
+                    avatarManager.updateDegrees(to: value.degrees)
+                }
+            )
+            .simultaneously(with: MagnificationGesture()
+                .onChanged { value in
+                    if value.magnitude > 3 {
+                        avatarManager.updateScale(to: 3)
+                    } else if value.magnitude < 0.5 {
+                        avatarManager.updateScale(to: 0.5)
+                    } else {
+                        avatarManager.updateScale(to: value.magnitude)
+                    }
+                }
+            )
     }
     
     var accessories: some View {
@@ -100,6 +170,8 @@ struct AvatarView: View {
                         alertTitle = "Purchase"
                         alertMessage = "Would you like to buy this accessory \"\(item.rawValue.split(separator: " ").dropLast().joined(separator: " "))\" for \(item.cost)c."
                         showingAlert = true
+                    } else {
+                        avatarManager.selectAccessory(withID: item.id)
                     }
                 } label: {
                     Image(item.rawValue)

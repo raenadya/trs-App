@@ -80,7 +80,15 @@ class AvatarManager: ObservableObject {
     
     @Persistent("ownedAccessories") private var internalOwnedAccessories: [Int] = []
     @Persistent("avatarImageName") private var internalAvatarImageName: String? = nil
+    @Persistent("selectedAccessoryID") private var internalSelectedAccessoryID: Int? = nil
+    @Persistent("location") private var internalLocation: CGPoint = CGPoint(x: 50, y: 50)
+    @Persistent("rotation") private var internalRotation: Double = 0.0
+    @Persistent("scale") private var internalScale: Double = 1.0
     
+    @Published var rotation: Double = 0.0
+    @Published var scale: Double = 1.0
+    @Published var location: CGPoint = CGPoint(x: 50, y: 50)
+    @Published var selectedAccessoryID: Int? = nil
     @Published var ownedAccessories: [Int] = []
     @Published var avatarImageName: String? = nil
     
@@ -92,6 +100,10 @@ class AvatarManager: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.avatarImageName = self.internalAvatarImageName
             self.ownedAccessories = self.internalOwnedAccessories
+            self.selectedAccessoryID = self.internalSelectedAccessoryID
+            self.location = self.internalLocation
+            self.rotation = self.internalRotation
+            self.scale = self.internalScale
         }
     }
     
@@ -103,5 +115,50 @@ class AvatarManager: ObservableObject {
     func addOwnedAccessory(withID id: Int) {
         self.internalOwnedAccessories.append(id)
         updatePublishedVariables()
+    }
+    
+    func selectAccessory(withID id: Int) {
+        self.internalSelectedAccessoryID = id
+        updatePublishedVariables()
+    }
+    
+    func updateLocation(to newLocation: CGPoint) {
+        self.internalLocation = newLocation
+        updatePublishedVariables()
+    }
+    
+    func updateDegrees(to newDegrees: Double) {
+        self.internalRotation = newDegrees
+        updatePublishedVariables()
+    }
+    
+    func updateScale(to newScale: Double) {
+        self.internalScale = newScale
+        updatePublishedVariables()
+    }
+    
+    func getImageName(withID id: Int) -> String {
+        switch id {
+        case 1: return AvatarItem.bowTie.rawValue
+        case 2: return AvatarItem.cap.rawValue
+        case 3: return AvatarItem.catEars.rawValue
+        case 4: return AvatarItem.chef.rawValue
+        case 5: return AvatarItem.crown.rawValue
+        case 6: return AvatarItem.devilHorns.rawValue
+        case 7: return AvatarItem.flowerCrown.rawValue
+        case 8: return AvatarItem.graduationHat.rawValue
+        case 9: return AvatarItem.headphones.rawValue
+        case 10: return AvatarItem.mexicanHat.rawValue
+        case 11: return AvatarItem.partyHat.rawValue
+        case 12: return AvatarItem.plant.rawValue
+        case 13: return AvatarItem.rabbitEars.rawValue
+        case 14: return AvatarItem.santaHat.rawValue
+        case 15: return AvatarItem.tiara.rawValue
+        case 16: return AvatarItem.topHat.rawValue
+        case 17: return AvatarItem.vikingHelmet.rawValue
+        case 18: return AvatarItem.witchHat.rawValue
+        default:
+            return ""
+        }
     }
 }
