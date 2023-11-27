@@ -88,6 +88,7 @@ class AuthenticationManager: ObservableObject {
                 if let currentUserUID = Auth.auth().currentUser?.uid {
                     Firestore.firestore().collection("users").document(currentUserUID).setData([
                         "email": email,
+                        "coins": 0
                     ]) { err in
                         if let err = err {
                             completion(.failure(err))
