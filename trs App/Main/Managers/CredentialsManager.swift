@@ -280,6 +280,6 @@ class CredentialsManager: ObservableObject {
             internalProjects.remove(at: index)
         }
         updatePublishedVariables()
-        coinsManager.removeCounts(amount: 5)
+        coinsManager.removeCoins(amount: 5)
     }
 }
