@@ -32,10 +32,6 @@ struct NewCredentialsView: View {
     
     @State var rating = 0
     
-//    @State private var showCoinAlert = false
-//    @State private var showDeleteAlert = false
-//    @State private var coinNumber = 0
-    
     @State private var showAddAlert = false
     
     @Environment(\.dismiss) var dismiss

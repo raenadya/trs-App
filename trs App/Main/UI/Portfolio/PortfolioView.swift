@@ -64,6 +64,9 @@ struct PortfolioView: View {
     var body: some View {
         NavigationStack {
             list
+                .alert(isPresented: $coinsManager.showAlert) {
+                    Alert(title: Text(coinsManager.alertTitle), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
+                }
                 .safeAreaInset(edge: .top) {
                     FilterButtons(
                         allCount: .constant(sortedCredentials.count),

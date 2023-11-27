@@ -15,7 +15,7 @@ class CoinsManager: ObservableObject {
     @Published var coins = 0
     @Published var showAlert = false
     @Published var alertTitle = ""
-    @Published var alertMessage = ""
+    @Published var alertMessage: LocalizedStringKey = ""
     
     @AppStorage("coins", store: .standard) private var internalCoins = 0
     
@@ -47,8 +47,9 @@ class CoinsManager: ObservableObject {
     }
 
     func addCoins(amount: Int) {
-        if let uid = Auth.auth().currentUser?.uid {
+        if let uid = Auth.auth().currentUser?.uid, let email = Auth.auth().currentUser?.email {
             Firestore.firestore().collection("users").document(uid).setData([
+                "email": email,
                 "coins": self.coins + 5
             ]) { err in
                 if let err = err {
@@ -59,10 +60,10 @@ class CoinsManager: ObservableObject {
                 }
             }
         }
-        showAlert(title: "Credential added", message: "^[\(amount) Song](inflect: true) added!")
+        self.showAlert(title: "Credential added", message: LocalizedStringKey("^[\(amount) coins](inflect: true) added!"))
     }
 
-    func removeCounts(amount: Int) {
+    func removeCoins(amount: Int) {
         if let uid = Auth.auth().currentUser?.uid {
             Firestore.firestore().collection("users").document(uid).setData([
                 "coins": self.coins - 5
@@ -75,10 +76,10 @@ class CoinsManager: ObservableObject {
                 }
             }
         }
-        showAlert(title: "Credential removed", message: "^[\(amount) Song](inflect: true) removed.")
+        self.showAlert(title: "Credential removed", message: LocalizedStringKey("^[\(amount) coins](inflect: true) removed."))
     }
 
-    private func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: LocalizedStringKey) {
         alertTitle = title
         alertMessage = message
         showAlert = true
