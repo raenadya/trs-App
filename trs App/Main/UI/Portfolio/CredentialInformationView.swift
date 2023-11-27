@@ -40,7 +40,7 @@ struct CredentialInformationView: View {
             informationSection
             datesSection
             secondaryInformationSection
-            documentsSection
+//            documentsSection
             importanceSection
             if credential.type == .experiences || credential.type == .competitions {
                 tagSection

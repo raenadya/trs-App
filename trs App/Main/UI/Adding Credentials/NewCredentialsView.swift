@@ -75,7 +75,7 @@ struct NewCredentialsView: View {
             infoSection
             durationSection
             secondaryInfoSection
-            documentsSection
+//            documentsSection
             importanceSection
             if forType == .experiences || forType == .competitions {
                 tagSection
@@ -101,16 +101,16 @@ struct NewCredentialsView: View {
         .alert(isPresented: $coinsManager.showAlert) {
             Alert(title: Text(coinsManager.alertTitle), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
         }
-        .fileImporter(isPresented: $openFileDirectory, allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf], allowsMultipleSelection: true) { files in
-            do {
-                let fileURL = try files.get()
-                print(fileURL)
-                let fileName = fileURL.first?.lastPathComponent ?? "file not available"
-                print(fileName)
-            } catch {
-                print("error reading file \(error.localizedDescription)")
-            }
-        }
+//        .fileImporter(isPresented: $openFileDirectory, allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf], allowsMultipleSelection: true) { files in
+//            do {
+//                let fileURL = try files.get()
+//                print(fileURL)
+//                let fileName = fileURL.first?.lastPathComponent ?? "file not available"
+//                print(fileName)
+//            } catch {
+//                print("error reading file \(error.localizedDescription)")
+//            }
+//        }
     }
     
     var infoSection: some View {
