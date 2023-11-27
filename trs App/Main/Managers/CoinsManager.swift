@@ -12,6 +12,7 @@ class CoinsManager: ObservableObject {
 
     @Published var coins = 0
     @Published var showAlert = false
+    @Published var alertTitle = ""
     @Published var alertMessage = ""
     
     @AppStorage("coins", store: .standard) private var internalCoins = 0
@@ -29,16 +30,17 @@ class CoinsManager: ObservableObject {
     func addCoins(amount: Int) {
         internalCoins += amount
         updatePublishedVariables()
-        showAlert(message: "\(amount) coins added!")
+        showAlert(title: "Credential added", message: "^[\(amount) Song](inflect: true) added!")
     }
 
     func removeCounts(amount: Int) {
         internalCoins -= amount
         updatePublishedVariables()
-        showAlert(message: "\(amount) coins removed.")
+        showAlert(title: "Credential removed", message: "^[\(amount) Song](inflect: true) removed.")
     }
 
-    private func showAlert(message: String) {
+    private func showAlert(title: String, message: String) {
+        alertTitle = title
         alertMessage = message
         showAlert = true
     }

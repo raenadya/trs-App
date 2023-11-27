@@ -96,23 +96,14 @@ struct NewCredentialsView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     addCredential()
-//                    showCoinAlert = true
-//                    coinNumber += 5
                 } label: {
                     Text("Add")
                 }
-//                .alert(isPresented: $showCoinAlert) {
-//                    Alert(
-//                        title: Text("Congrats!"),
-//                        message: Text("You've earned 5 coins."),
-//                        dismissButton: .default(Text("OK"))
-//                    )
-//                }
                 .disabled(disabled)
             }
         }
         .alert(isPresented: $coinsManager.showAlert) {
-            Alert(title: Text("You've earned 5 coins!"), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
+            Alert(title: Text(coinsManager.alertTitle), message: Text(coinsManager.alertMessage), dismissButton: .default(Text("OK")))
         }
         .fileImporter(isPresented: $openFileDirectory, allowedContentTypes: [.text, .data, .html, .jpeg, .png, .json, .xml, .audio, .image, .pdf], allowsMultipleSelection: true) { files in
             do {
