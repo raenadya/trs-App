@@ -50,13 +50,38 @@ enum AvatarItem: String, Identifiable, CaseIterable {
         case .witchHat: return 18
         }
     }
+    
+    var cost: Int {
+        switch self {
+        case .bowTie: return 10
+        case .cap: return 10
+        case .catEars: return 30
+        case .chef: return 20
+        case .crown: return 20
+        case .devilHorns: return 30
+        case .flowerCrown: return 10
+        case .graduationHat: return 20
+        case .headphones: return 40
+        case .mexicanHat: return 40
+        case .partyHat: return 10
+        case .plant: return 30
+        case .rabbitEars: return 30
+        case .santaHat: return 50
+        case .tiara: return 50
+        case .topHat: return 40
+        case .vikingHelmet: return 20
+        case .witchHat: return 20
+        }
+    }
 }
 
 class AvatarManager: ObservableObject {
     static let shared: AvatarManager = .init()
     
+    @Persistent("ownedAccessories") private var internalOwnedAccessories: [Int] = []
     @Persistent("avatarImageName") private var internalAvatarImageName: String? = nil
     
+    @Published var ownedAccessories: [Int] = []
     @Published var avatarImageName: String? = nil
     
     init() {
@@ -66,11 +91,17 @@ class AvatarManager: ObservableObject {
     func updatePublishedVariables() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.avatarImageName = self.internalAvatarImageName
+            self.ownedAccessories = self.internalOwnedAccessories
         }
     }
     
     func updateAvatarImage(to newName: String?) {
         internalAvatarImageName = newName
+        updatePublishedVariables()
+    }
+    
+    func addOwnedAccessory(withID id: Int) {
+        self.internalOwnedAccessories.append(id)
         updatePublishedVariables()
     }
 }

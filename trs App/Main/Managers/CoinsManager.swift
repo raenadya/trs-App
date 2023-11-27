@@ -50,7 +50,7 @@ class CoinsManager: ObservableObject {
         if let uid = Auth.auth().currentUser?.uid, let email = Auth.auth().currentUser?.email {
             Firestore.firestore().collection("users").document(uid).setData([
                 "email": email,
-                "coins": self.coins + 5
+                "coins": self.coins + amount
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -63,10 +63,11 @@ class CoinsManager: ObservableObject {
         self.showAlert(title: "Credential added", message: LocalizedStringKey("^[\(amount) coins](inflect: true) added!"))
     }
 
-    func removeCoins(amount: Int) {
-        if let uid = Auth.auth().currentUser?.uid {
+    func removeCoins(amount: Int, showsAlert: Bool = true) {
+        if let uid = Auth.auth().currentUser?.uid, let email = Auth.auth().currentUser?.email {
             Firestore.firestore().collection("users").document(uid).setData([
-                "coins": self.coins - 5
+                "email": email,
+                "coins": self.coins - amount
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -76,7 +77,9 @@ class CoinsManager: ObservableObject {
                 }
             }
         }
-        self.showAlert(title: "Credential removed", message: LocalizedStringKey("^[\(amount) coins](inflect: true) removed."))
+        if showsAlert {
+            self.showAlert(title: "Credential removed", message: LocalizedStringKey("^[\(amount) coins](inflect: true) removed."))
+        }
     }
 
     private func showAlert(title: String, message: LocalizedStringKey) {

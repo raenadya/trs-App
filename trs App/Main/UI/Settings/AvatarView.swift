@@ -9,6 +9,12 @@ import SwiftUI
 
 struct AvatarView: View {
     
+    @State var selectedAccessory: AvatarItem = .bowTie
+    
+    @State var showingAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
+    
     @State private var isImagePickerPresented = false
     
     @ObservedObject var coinsManager: CoinsManager = .shared
@@ -21,6 +27,17 @@ struct AvatarView: View {
         }
         .navigationTitle("Avatar")
         .navigationBarTitleDisplayMode(.inline)
+        .alert(alertTitle, isPresented: $showingAlert) {
+            Button("Cancel", role: .cancel) {}
+            Button("Buy", role: .none) {
+                if coinsManager.coins - selectedAccessory.cost >= 0 {
+                    coinsManager.removeCoins(amount: selectedAccessory.cost, showsAlert: false)
+                    avatarManager.addOwnedAccessory(withID: selectedAccessory.id)
+                }
+            }
+        } message: {
+            Text(alertMessage)
+        }
         .sheet(isPresented: $isImagePickerPresented) {
             CatImagePicker()
         }
@@ -71,15 +88,26 @@ struct AvatarView: View {
             }
         }
         .padding(.vertical)
+        .padding(.top, 100)
     }
     
     var accessories: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 30), count: 3), spacing: 15) {
             ForEach(AvatarItem.allCases, id: \.id) { item in
-                Image(item.rawValue)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80)
+                Button {
+                    if !avatarManager.ownedAccessories.contains(item.id) {
+                        selectedAccessory = item
+                        alertTitle = "Purchase"
+                        alertMessage = "Would you like to buy this accessory \"\(item.rawValue.split(separator: " ").dropLast().joined(separator: " "))\" for \(item.cost)c."
+                        showingAlert = true
+                    }
+                } label: {
+                    Image(item.rawValue)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80)
+                        .opacity(avatarManager.ownedAccessories.contains(item.id) ? 1 : 0.5)
+                }
             }
         }
         .padding()
