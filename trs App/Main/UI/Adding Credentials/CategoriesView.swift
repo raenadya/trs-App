@@ -19,40 +19,48 @@ struct CategoriesView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 15) {
-                credential(systemImage: "shared.with.you", forType: .experiences)
-                credential(systemImage: "figure.open.water.swim", forType: .competitions)
-                credential(systemImage: "trophy.fill", forType: .achievementsAndHonours)
-                credential(systemImage: "text.badge.checkmark", forType: .projects)
-            }
-            .navigationTitle("Categories")
-            .navigationDestination(isPresented: $showingCredentialInformation) {
-                NewCredentialsView(showingAddCredentialView: $showingAddCredentialView,
-                                          showingCredentialInformation: $showingCredentialInformation,
-                                          navigationTitle: $titleToBePassed,
-                                          forType: $typeToBePassed)
+            GeometryReader { geometry in
+                VStack(spacing: 15) {
+                    Spacer()
+                    credential(geometry: geometry, systemImage: "shared.with.you", forType: .experiences)
+                    credential(geometry: geometry, systemImage: "figure.open.water.swim", forType: .competitions)
+                    credential(geometry: geometry, systemImage: "trophy.fill", forType: .achievementsAndHonours)
+                    credential(geometry: geometry, systemImage: "text.badge.checkmark", forType: .projects)
+                    Spacer()
+                }
+                .navigationTitle("Categories")
+                .navigationDestination(isPresented: $showingCredentialInformation) {
+                    NewCredentialsView(showingAddCredentialView: $showingAddCredentialView,
+                                       showingCredentialInformation: $showingCredentialInformation,
+                                       navigationTitle: $titleToBePassed,
+                                       forType: $typeToBePassed)
+                }
             }
         }
     }
     
     @ViewBuilder
-    func credential(systemImage: String, forType type: CategoryType) -> some View {
-        Button {
-            typeToBePassed = type
-            titleToBePassed = type.rawValue
-            showingCredentialInformation.toggle()
-        } label: {
-            HStack(spacing: 5) {
-                Label(type.rawValue, systemImage: systemImage)
-                    .font(.title3)
+    func credential(geometry: GeometryProxy, systemImage: String, forType type: CategoryType) -> some View {
+        HStack {
+            Spacer()
+            Button {
+                typeToBePassed = type
+                titleToBePassed = type.rawValue
+                showingCredentialInformation.toggle()
+            } label: {
+                HStack(spacing: 5) {
+                    Label(type.rawValue, systemImage: systemImage)
+                        .font(.title3)
+                }
+                .padding()
+                .frame(width: geometry.size.width * 2.5/3, height: 60)
+                .foregroundColor(.white)
+                .background(Color.accentColor.opacity(0.7))
+                .cornerRadius(16)
             }
-            .padding()
-            .frame(width: UIScreen.main.bounds.width * 2.5/3, height: 60)
-            .foregroundColor(.white)
-            .background(Color.accentColor.opacity(0.7))
-            .cornerRadius(16)
+            .buttonStyle(.plain)
+            Spacer()
         }
-        .buttonStyle(.plain)
     }
 }
 
